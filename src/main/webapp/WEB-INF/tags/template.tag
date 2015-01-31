@@ -14,15 +14,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" href="../../favicon.ico">
 
     <title>Munchin</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
 
-    <!-- Custom styles for this template -->
-    <link href="../../stylesheets/cover.min.css" rel="stylesheet">
-    <link href="../../stylesheets/LoadingGif.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../stylesheets/cover.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
 
     <jsp:invoke fragment="scripts"/>
