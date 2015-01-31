@@ -4,7 +4,6 @@
         <servlet-name>createProfile</servlet-name>
         <servlet-class>CreateProfileServlet</servlet-class>
     </servlet>
-
     <servlet>
         <servlet-name>deposit</servlet-name>
         <servlet-class>DepositServlet</servlet-class>
@@ -37,6 +36,7 @@
         <servlet-name>trip</servlet-name>
         <servlet-class>TripServlet</servlet-class>
     </servlet>
+
     <servlet-mapping>
         <servlet-name>createProfile</servlet-name>
         <url-pattern>/create_profile</url-pattern>

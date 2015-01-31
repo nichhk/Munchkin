@@ -14,8 +14,8 @@ public class HomeServlet extends HttpServlet {
             req.setAttribute("log", LoginStatus.getLogInUrl("/create_profile"));
             try {
                 System.out.println("going to home2.jsp");
-                req.setAttribute("logIn", LoginStatus.getLogInUrl("/create_profile"));
-                req.setAttribute("signIn", LoginStatus.getLogInUrl("/"));
+                req.setAttribute("logIn", LoginStatus.getLogInUrl("/"));
+                req.setAttribute("createProf", LoginStatus.getLogInUrl("/create_profile"));
                 req.getRequestDispatcher("Home2.jsp").forward(req, resp);
             } catch(Exception e) {e.printStackTrace();}
         }

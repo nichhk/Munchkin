@@ -10,7 +10,7 @@
     <jsp:attribute name="content">
         <div class="site-wrapper-inner">
             <a class="btn btn-primary" href="${logIn}">Log in</a>
-            <a class="btn btn-primary" href="${signIn}">Create an account</a>
+            <a class="btn btn-primary" href="${createProf}">Create an account</a>
         </div>
 
     </jsp:attribute>

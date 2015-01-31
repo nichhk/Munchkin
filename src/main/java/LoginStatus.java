@@ -1,11 +1,13 @@
 import com.google.appengine.api.datastore.*;
+import com.google.appengine.api.datastore.Query.*;
 import com.google.appengine.api.users.User;
 import com.google.appengine.api.users.UserService;
 import com.google.appengine.api.users.UserServiceFactory;
 
 public class LoginStatus{
     static DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
-    static UserService userService = UserServiceFactory.getUserService(); // Finds the user's email from OAuth
+    // Finds the user's email from OAuth
+    static UserService userService = UserServiceFactory.getUserService();
 
     public static boolean getStatus() {
         User user = userService.getCurrentUser();
@@ -15,7 +17,8 @@ public class LoginStatus{
         String email = user.getEmail();
 
         Query q = new Query("profile");
-        Query.Filter uniqueEmail = new Query.FilterPredicate(Entity.KEY_RESERVED_PROPERTY, Query.FilterOperator.EQUAL,email);
+        Filter uniqueEmail = new FilterPredicate("email",
+                Query.FilterOperator.EQUAL, email);
 
         boolean isUser = false; // Checks it the email has already been placed in the dataStore
 
