@@ -1,8 +1,49 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@taglib prefix="t" tagdir="WEB-INF/tags" %>
+<%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
 
 <t:template isApproved="${isApproved}" log="${log}" page="${page}">
     <jsp:attribute name="scripts">
+        <script>
+
+            $(function() {
+                $("#percentFee").prop('disabled', true); //http://stackoverflow.com/questions/6982692/html5-input-type-date-default-value-to-today
+                $("#flatFee").prop('disabled', true);
+                var now = new Date();
+                var month = (now.getMonth() + 1);
+                var day = now.getDate();
+                if(month < 10)
+                    month = "0" + month;
+                if(day < 10)
+                    day = "0" + day;
+                var today = now.getFullYear() + '-' + month + '-' + day;
+                $("#etaDate").val(today);
+                $("#lastOrderDate").val(today);
+            });
+            $(function () {
+
+                $('#percent').click(function () {
+
+                    if ($("#percent").prop("checked")==true) {
+                        //alert("Able");
+                        $("#percentFee").prop('disabled', false);
+                    }
+                    else {
+                        //alert("Disable");
+                        $("#percentFee").prop('disabled', true);
+                    }
+
+                });
+                $('#flat').click(function () {
+                    if ($("#flat").prop("checked")==true) {
+                        $("#flatFee").prop('disabled', false);
+                    }
+                    else {
+                        $("#flatFee").prop('disabled', true);
+                    }
+                });
+            });
+
+        </script>
 
     </jsp:attribute>
 
@@ -11,36 +52,39 @@
             <h2>Make a Trip</h2>
             <form role="form">
                 <div class="form-group">
-                    <label for="etd">When will you leave?</label>
-                    <input type=time class="form-control" id="etd" placeholder="Enter departure time" required>
+                    <label for="lastOrderTime">When will you stop taking orders?</label>
+                    <input type=time class="form-control" id="lastOrderTime" name = "lastOrderTime" placeholder="Enter latest order time" required>
+                    <input type = date class = "form-control" id = "lastOrderDate" name = "lastOrderDate">
                 </div>
+
                 <div class="form-group">
-                    <label for="restaurantTime">When will you arrive at the restaurant?</label>
-                    <input type=time class="form-control" id="restaurantTime" placeholder="Enter arrival time" required>
-                </div>
-                <div class="form-group">
-                    <label for="eta">When will you get back to Rice?</label>
-                    <input type=time class="form-control" id="eta" placeholder="Enter arrival time" required>
+
+                    <label for="etaTime">When will you be able to drop off the food?</label>
+                    <input type=time class="form-control" id="etaTime" name = "etaTime" placeholder="Enter delivery time" required>
+                    <input type=date class="form-control" id="etaDate" name = "etaDate" required>
                 </div>
                 <div class="form-group">
                     <label for="restaurant">What restaurant are you going to?</label>
-                    <input type="text" class="form-control" id="restaurant" placeholder="Enter restaurant name" required>
+                    <input type="text" class="form-control" id="restaurant" name = "restaurant" placeholder="Enter restaurant name" required>
                 </div>
                 <div class ="form-group">
-                    <label for ="fee">What is your fee?</label>
+
                     <div class="checkbox">
-                        <label for ="percent"><input type="checkbox" id = "percent">Percentage</label>
-                        <label for ="flat"><input type="checkbox" id = "flat">Flat Fee</label>
-                        <input type="number" class="form-control" id="fee" placeholder="Enter fee (leave out %)" required>
+                        <label for ="percent"><input type="checkbox" id = "percent" name = "percentage">Percentage</label>
+
+                        <label for ="flat"><input type="checkbox" id = "flat" name = "flat">Flat Fee</label>
+
+                        <input type="number" class="form-control" id="percentFee" name = "percentFee" placeholder="10% -> ex: 10" required>
+
+                        <input type="number" class="form-control" id="flatFee" name = "flatFee" placeholder="$3.50 -> ex: 3.5" required>
                     </div>
                 </div>
                 <div class = "form-group">
                     <label for = "maxOrders">Maximum number of orders you will accept?</label>
-                    <input type = "number" class = "form-control" id = "maxOrders" placeholder="Enter maximum number" required>
+                    <input type = "number" class = "form-control" id = "maxOrders" name = maxOrders" placeholder="Enter maximum number" required>
                 </div>
                 <div class = "form-group">
-                    <label for = "acceptUntil">When will you not accept any more orders</label>
-                    <input type = "time" class = "form-control" id ="acceptUntil" placeholder="Enter time" required>
+
                     <button type="submit" class="btn btn-default" style="margin-top:10px">Submit</button>
                 </div>
             </form>

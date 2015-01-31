@@ -11,4 +11,9 @@ public class OrderServlet extends HttpServlet {
     public void doGet(HttpServletRequest req, HttpServletResponse resp){
 
     }
+
+    @Override
+    public void doPost(HttpServletRequest req, HttpServletResponse resp){
+
+    }
 }
