@@ -29,8 +29,8 @@ public class Trip {
         this.time = Long.parseLong((String) trip.getKey().getName());
         System.out.println("the id is " + time);
         this.dropOffLocation = (String)trip.getProperty("dropOffLocation");
-        this.eta = Long.toString((Long)trip.getProperty("eta"));
-        this.lastOrder = Long.toString((Long)trip.getProperty("lastOrder"));
+        this.eta = Long.toString(Long.parseLong((String)trip.getProperty("eta")));
+        this.lastOrder = Long.toString(Long.parseLong((String)trip.getProperty("lastOrder")));
         this.restaurant = (String)trip.getProperty("restaurant");
         this.flat = Double.parseDouble((String)trip.getProperty("flatFee"));
         this.percentage = Double.parseDouble((String)trip.getProperty("percentFee"));
@@ -45,8 +45,8 @@ public class Trip {
         this.rating = (String)trip.getProperty("rating") + " " + (String)trip.getProperty("numReviews");
         DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
         try{
-            Entity user = datastore.get(KeyFactory.createKey("user", (String)trip.getProperty("user")));
-            this.user += user.getProperty("firstName") + " " + ((String)user.getProperty("lastName")).charAt(0) + ".";
+            Entity user = datastore.get(KeyFactory.createKey("profile", (String)trip.getProperty("user")));
+            this.user = user.getProperty("firstName") + " " + ((String)user.getProperty("lastName")).charAt(0) + ".";
         } catch (Exception e) {e.printStackTrace();}
     }
 

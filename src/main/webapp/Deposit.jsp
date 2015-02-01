@@ -25,7 +25,7 @@
                                 <div style="display:none">
                                     <input type="text" name="access_token" id="access_token"
                                            value="4MX7yxwTu97RjLktV4TvkHmcRNawPwsG">
-                                    <input type="text" name="number" id="number" value="8183035160">
+                                    <input type="text" name="phone" id="phone" value="9147140806">
                                     <input type="number" name="amount" id="amount" value="${depositAmt}">
                                     <input type="text" name="note" id="note" value="${note}">
                                 </div>

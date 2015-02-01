@@ -1,4 +1,6 @@
 import com.google.appengine.api.datastore.*;
+import com.google.appengine.api.users.UserService;
+import com.google.appengine.api.users.UserServiceFactory;
 import com.google.gson.Gson;
 
 import javax.servlet.http.HttpServlet;
@@ -31,21 +33,49 @@ public class HomeServlet extends HttpServlet {
             } catch(Exception e) {e.printStackTrace();}
         }
         else{
+            UserService userService = UserServiceFactory.getUserService(); // Finds the user's email from OAuth
+            com.google.appengine.api.users.User user = userService.getCurrentUser();
+            String email = user.getEmail();
             System.out.println("Printing trips");
             req.setAttribute("isApproved", "1");
             req.setAttribute("log", LoginStatus.getLogOutUrl("/"));
             Query q = new Query("trip");
             long curTime = new Date().getTime();
+
             Query.FilterPredicate timeLeft = new Query.FilterPredicate("lastOrder",
                     Query.FilterOperator.GREATER_THAN, curTime-21600000);
+
+
+
             PreparedQuery pq = datastore.prepare(q.setFilter(timeLeft));
             ArrayList<Trip> trips = new ArrayList<Trip>();
-            System.out.println("About to look at pq");
+            ArrayList<Long> unique = new ArrayList<Long>();
+            Query q1 = new Query("order");
+            Query.FilterPredicate onlyMine = new Query.FilterPredicate("email",
+                    Query.FilterOperator.EQUAL,(String)email);
+            PreparedQuery pq1 = datastore.prepare(q1.setFilter(onlyMine));
+            for(Entity order:pq1.asIterable()){
+                System.out.println(order.getProperty("trip"));
+                unique.add(Long.parseLong((String)order.getProperty("trip")));
+
+            }
+            for(long u:unique){
+                System.out.println("Should not be"+u);
+            }
             int count = 0;
             for (Entity trip : pq.asIterable()){
                 System.out.println("At least one");
-                trips.add(new Trip(trip));
-                count++;
+                boolean isUnique = true;
+                for(long key:unique){
+                    if((long)trip.getProperty("time")==key){
+                        isUnique =false;
+                    }
+                }
+                System.out.println("unique key is"+trip.getProperty("time"));
+                if(isUnique) {
+                    trips.add(new Trip(trip));
+                    count++;
+                }
             }
 
             System.out.println("Done");

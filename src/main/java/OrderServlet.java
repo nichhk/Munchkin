@@ -44,7 +44,6 @@ public class OrderServlet extends HttpServlet {
             Entity item = new Entity("item", new Date().getTime());
             item.setProperty("order",order.getProperty("trip"));
             item.setProperty("foodItem", req.getParameter("foodItem" + i));
-            item.setProperty("priceMin", req.getParameter("priceMin" + i));
             item.setProperty("priceMax", req.getParameter("priceMax" + i));
             item.setProperty("comments", req.getParameter("comments" + i));
             datastore.put(item);
@@ -52,7 +51,6 @@ public class OrderServlet extends HttpServlet {
             if (req.getParameter("altFoodItem"+i) != null){
                 Entity alt = new Entity("alt", item.getKey());
                 alt.setProperty("foodItem", req.getParameter("altFoodItem" + i));
-                alt.setProperty("priceMin", req.getParameter("altPriceMin" + i));
                 alt.setProperty("priceMax", req.getParameter("altPriceMax" + i));
                 alt.setProperty("comments", req.getParameter("altComments" + i));
                 datastore.put(alt);
