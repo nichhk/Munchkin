@@ -42,7 +42,6 @@ public class TripServlet extends HttpServlet {
         System.out.println("restaurant is"+req.getParameter("restaurant"));
         trip.setProperty("restaurant", req.getParameter("restaurant"));
         trip.setProperty("maxOrder", req.getParameter("maxOrder"));
-
         findFee(trip, req);
         trip.setProperty("eta",getMilliTime(req,"eta"));
         trip.setProperty("lastOrder",getMilliTime(req,"lastOrder"));
@@ -79,12 +78,7 @@ public class TripServlet extends HttpServlet {
         String[] splitTime = req.getParameter(timeTerm).split(":");
         timeElements[3]=Integer.parseInt(splitTime[0]);
         timeElements[4]=Integer.parseInt(splitTime[1]);
-        /*
 
-        for(int j:timeElements){
-            System.out.println(j);
-        }
-        */
         System.out.println(new DateToMilliseconds().timeToDate(new DateToMilliseconds().dateToTime(timeElements)));
         return Long.toString(new DateToMilliseconds().dateToTime(timeElements));
     }

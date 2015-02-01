@@ -97,9 +97,6 @@
                                 <br>
                                 <input type="number" name="numItems" id="numItems" style="display: none" value=1>
 
-
-
-
                                 <button type="submit" style="margin-top:10px" class="btn btn-default">Submit</button>
                             </form>
                         </div>

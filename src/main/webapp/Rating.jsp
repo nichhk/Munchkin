@@ -3,7 +3,11 @@
 <style>
     span:hover{cursor:pointer;}
 </style>
+*****
 
+NOTE TO SELF: MAKE SURE TO PASS IN USERID TO THIS PAGE
+
+*****
 <t:template isApproved="${isApproved}" log="${log}" page="${page}">
     <jsp:attribute name="scripts">
     <script>
@@ -47,7 +51,8 @@
                     <div class="row">
                         <div class="col-md-12">
                         <h2>Rate the Delivery</h2>
-                        <form role="form">
+                        <form role="form" id="ratingForm">
+                            <input type="text" name="userId" value="${userId}" style="display:none">
                             <div class="form-group" id = "starRating">
                                 <input type = "number" id = "numStars" name = "numStars" value = 0 style = "display : none">
                                 <label for="starRating">How was the delivery experience?</label>
@@ -58,8 +63,8 @@
                                 <span class="glyphicon glyphicon-star-empty" id = "star5" style="color:gold"></span>
                             </div>
                             <div class="form-group">
-                                <label for="comments">Additional Comments:</label>
-                                <textarea class="form-control" rows="5" id="comment"></textarea>
+                                <label for="comments">Comments:</label>
+                                <textarea class="form-control" rows="5" name="comment" id="comments" form="ratingForm"></textarea>
                             </div>
                             <div class = "form-group">
                                 <button type="submit" class="btn btn-default" style="margin-top:10px">Submit</button>

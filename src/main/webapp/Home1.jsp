@@ -9,11 +9,23 @@
                 $.each( ${trips}, function(index, trip) {
                     var splitTrip = trip.rating.split(" ");
                     var numStars = parseInt(splitTrip[0]);
+                    if (isNaN(numStars)){
+                        numStars = 0;
+                    }
                     var numReviews = parseInt(splitTrip[1]);
+                    if (isNaN(numReviews)){
+                        numReviews = 0;
+                    }
+                    console.log("numStars is " + numStars);
+                    console.log("numReviews is " + numReviews);
                     var stars = $('<span>');
                     for (var i = 1; i <= numStars; i++) {
                         var newSpan = $('<span class = "glyphicon glyphicon-star" style="color:gold">');
                         stars.append(newSpan);
+                    }
+                    for (var i = numStars + 1; i <= 5; i++) {
+                        var emptyStar = $('<span class = "glyphicon glyphicon-star-empty" style="color:gold">');
+                        stars.append(emptyStar);
                     }
                     var numReviewsSpan = $('<span>').html("("+numReviews+")");
                     stars.append(numReviewsSpan);

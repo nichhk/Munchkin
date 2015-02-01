@@ -1,7 +1,4 @@
-import com.google.appengine.api.datastore.DatastoreService;
-import com.google.appengine.api.datastore.DatastoreServiceFactory;
-import com.google.appengine.api.datastore.PreparedQuery;
-import com.google.appengine.api.datastore.Query;
+import com.google.appengine.api.datastore.*;
 import com.google.appengine.api.users.UserService;
 import com.google.appengine.api.users.UserServiceFactory;
 
@@ -10,8 +7,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
 import java.util.List;
-import com.google.appengine.api.datastore.*;
-import com.google.appengine.api.users.*;
 /**
  * Created by compsci on 2/1/15.
  */
@@ -20,6 +15,9 @@ public class ManageOrdersServlet extends HttpServlet {
     private List<Trip> myTrips = new ArrayList<Trip>();
     private static DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
     public void doGet(HttpServletRequest req, HttpServletResponse resp){
+        req.setAttribute("page", "order_manager");
+        req.setAttribute("isApproved", "1");
+        req.setAttribute("log", LoginStatus.getLogOutUrl("/"));
         UserService userService = UserServiceFactory.getUserService(); // Finds the user's email from OAuth
         com.google.appengine.api.users.User user = userService.getCurrentUser();
         String email = user.getEmail();

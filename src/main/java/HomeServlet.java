@@ -45,7 +45,6 @@ public class HomeServlet extends HttpServlet {
             for (Entity trip : pq.asIterable()){
                 System.out.println("At least one");
                 trips.add(new Trip(trip));
-                trips.get(count).addRating(Integer.parseInt(new User((String)trip.getProperty("user")).rating));
                 count++;
             }
 
