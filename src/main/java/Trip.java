@@ -1,7 +1,8 @@
+import com.google.appengine.api.datastore.Entity;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import com.google.appengine.api.datastore.*;
 
 // IF ERRORS WITH TIME CHECK OUT THE CHEAP SOLUTION AT LINE 38
 
@@ -18,12 +19,13 @@ public class Trip {
     String timeLeft;
     String phoneNumber;
     String dropOffLocation;
-    String id;
+    String time;
     List<String> customer = new ArrayList<String>();
     List<String> cusNumbers = new ArrayList<String>();
     String rating;
     public Trip(Entity trip){
-        this.id = trip.getKey().getName();
+        this.time = trip.getKey().getName();
+        System.out.println("the id is " + time);
         this.dropOffLocation = (String)trip.getProperty("dropOffLocation");
         this.eta = (String)trip.getProperty("eta");
         this.lastOrder = (String)trip.getProperty("lastOrder");
@@ -35,10 +37,12 @@ public class Trip {
         DateToMilliseconds dateSetter = new DateToMilliseconds();
         long[] timeLeftArray = dateSetter.milliToTimeString(Long.parseLong(lastOrder) - new Date().getTime()+21600000);
         this.timeLeft = formatTimeLeft(timeLeftArray);
+        this.eta = dateSetter.timeToDate(Long.parseLong(eta));
+        this.lastOrder = dateSetter.timeToDate(Long.parseLong(lastOrder));
     }
 
 
-
+/*
 
 
     public Trip(String userName, String eta, String lastOrder, String restaurant,
@@ -66,7 +70,7 @@ public class Trip {
         this.eta = dateSetter.timeToDate(Long.parseLong(eta));
         this.lastOrder = dateSetter.timeToDate(Long.parseLong(lastOrder));
         this.dropOffLocation = dropOffLocation;
-    }
+    }*/
     private String formatTimeLeft(long[] timeLeftArray ){
         if(timeLeftArray[0]==0){
             return timeLeftArray[1]+" minutes";

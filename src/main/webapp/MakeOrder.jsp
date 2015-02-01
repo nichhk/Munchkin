@@ -67,8 +67,8 @@
                 <div id="content" class="inner cover" style="text-align: left">
                     <div class="row">
                         <div class="col-md-12">
-                            <form role="form" method ="Post" id ="orderForm">
-                                <input type="text" name="trip" style="display:none" value="${tripId}">
+                            <form role="form" action="/order" method ="POST" id ="orderForm">
+                                <input type="text" name="tripId" style="display:none" value="${tripId}">
                                 <div id="inputs">
                                     <div id="item1">
                                         <div class="form-group">
@@ -96,6 +96,10 @@
                                 </button>
                                 <br>
                                 <input type="number" name="numItems" id="numItems" style="display: none" value=1>
+
+
+
+
                                 <button type="submit" style="margin-top:10px" class="btn btn-default">Submit</button>
                             </form>
                         </div>

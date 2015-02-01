@@ -22,7 +22,7 @@ public class User {
         this.firstName = (String)user.getProperty("firstName");
         this.lastName = (String)user.getProperty("lastName");
         this.number = (String)user.getProperty("phoneNumber");
-        this.rating = (String)user.getProperty("rating");
+        this.rating = Long.toString((long)user.getProperty("rating"));
 
     }
     public User(String email, String firstName, String lastName, String number){

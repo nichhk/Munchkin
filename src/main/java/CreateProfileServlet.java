@@ -49,7 +49,7 @@ public class CreateProfileServlet extends HttpServlet {
 
         placeDatastore(req); // Adds their data to the DataStore
         try {
-            req.getRequestDispatcher("Home2.jsp").forward(req, resp);
+            resp.sendRedirect("/");
         }catch (Exception e){
             e.printStackTrace();
         }

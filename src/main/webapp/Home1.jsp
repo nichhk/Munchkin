@@ -6,10 +6,10 @@
     <jsp:attribute name="scripts">
         <script>
             $(function() {
-                $.each( ${responseJson}, function(index, trip) {
+                $.each( ${trips}, function(index, trip) {
                     var splitTrip = trip.rating.split(" ");
-                    var numStars = splitTrip[0];
-                    var numReviews = splitTrip[1];
+                    var numStars = parseInt(splitTrip[0]);
+                    var numReviews = parseInt(splitTrip[1]);
                     var stars = $('<span>');
                     for (var i = 1; i <= numStars; i++) {
                         var newSpan = $('<span class = "glyphicon glyphicon-star" style="color:gold">');
@@ -26,12 +26,15 @@
                     {
                         fee += "$" + trip.flat;
                     }
+                    if (trip.flat != 0 && trip.percentage !=0){
+                        fee += " + ";
+                    }
                     if (trip.percentage != 0)
                     {
                         fee += trip.percentage + "%";
                     }
                     $('<div>').appendTo('#trips')
-                            .append($('<span style = "font-size:160%; font-weight:bold">').html(trip.location))
+                            .append($('<span style = "font-size:160%; font-weight:bold">').html(trip.restaurant))
                             .append($('<br>'))
                             .append($('<span style = "color:red">').html(trip.timeLeft))
                             .append($('<span>').html(trip.eta))
@@ -41,14 +44,14 @@
                             .append($('<span>').html(trip.user))
                             .append(stars)
                             .append($('<span>').html(fee))
-                            .append($('<a class="btn btn-primary"> href="order?id="+trip.id>').html("thanks for clicking").hide())
+                            .append($('<a class="btn btn-primary" href="order?id='+trip.time+'">').html("Join trip").hide())
                             .addClass('trip')
                             .addClass('well well-lg')
                 });
             });
             $(function () {
                 $('#trips').on('click', 'div', function() {
-                    $($(this).find('p')[0]).slideDown("fast");
+                    $($(this).find('a')[0]).slideDown("fast");
                 });
             });
         </script>
