@@ -1,15 +1,23 @@
+
 import com.google.appengine.api.datastore.*;
 import com.google.appengine.repackaged.com.google.gson.Gson;
+
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import java.io.IOException;
+
 import java.util.ArrayList;
+
 /**
  * Created by compsci on 1/31/15.
  */
 public class HomeServlet extends HttpServlet {
+
     private static DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+
 
     @Override
     public void doGet(HttpServletRequest req, HttpServletResponse resp){
@@ -33,11 +41,9 @@ public class HomeServlet extends HttpServlet {
             PreparedQuery pq = datastore.prepare(q.setFilter(timeLeft));
             ArrayList<Trip> trips = new ArrayList<Trip>();
             for (Entity trip : pq.asIterable()){
-                trips.add(new Trip((String)trip.getProperty("user"), (String)trip.getProperty("eta"),
-                        (String)trip.getProperty("etd"), (String)trip.getProperty("restaurantTime"),
-                        (String)trip.getProperty("restaurant"), (double)trip.getProperty("flat"),
-                        (double)trip.getProperty("percentage"), (int)trip.getProperty("maxOrder"),
-                        (String)trip.getProperty("acceptUntil")));
+                trips.add(new Trip(new User((String)trip.getProperty("user")).getName(),(String)trip.getProperty("eta"),(String)trip.getProperty("lastOrder")
+                ,(String)trip.getProperty("restaurant"),(String)trip.getProperty("flat"),(String)trip.getProperty("percentage"),
+                        (String)trip.getProperty("maxOrder"),new User((String)trip.getProperty("user")).number));
             }
             req.setAttribute("trips", new Gson().toJson(trips));
             try{
@@ -45,4 +51,5 @@ public class HomeServlet extends HttpServlet {
             } catch (Exception e) {e.printStackTrace();}
         }
     }
+
 }

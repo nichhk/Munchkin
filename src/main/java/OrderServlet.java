@@ -13,10 +13,6 @@ import javax.servlet.http.HttpServletResponse;
 public class OrderServlet extends HttpServlet {
     private static DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
 
-    @Override
-    public void doGet(HttpServletRequest req, HttpServletResponse resp){
-
-    }
 
     @Override
     public void doPost(HttpServletRequest req, HttpServletResponse resp){
