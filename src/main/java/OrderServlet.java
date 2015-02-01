@@ -8,6 +8,8 @@ import java.io.IOException;
  */
 public class OrderServlet extends HttpServlet {
 
-    public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {}
+    @Override
+    public void doPost(HttpServletRequest req, HttpServletResponse resp){
 
+    }
 }

@@ -5,6 +5,7 @@
     <jsp:attribute name="scripts">
         <script>
 
+
         $(function() {
             $("#percentFee").prop('disabled', true); //http://stackoverflow.com/questions/6982692/html5-input-type-date-default-value-to-today
             $("#flatFee").prop('disabled', true);
@@ -26,10 +27,12 @@
                 if ($("#percent").prop("checked")==true) {
                     //alert("Able");
                     $("#percentFee").prop('disabled', false);
+
                 }
                 else {
                     //alert("Disable");
                     $("#percentFee").prop('disabled', true);
+                    $("#percentFee").val("");
                 }
 
             });
@@ -39,6 +42,7 @@
                 }
                 else {
                     $("#flatFee").prop('disabled', true);
+                    $("#flatFee").val("");
                 }
             });
         });
@@ -50,7 +54,7 @@
     <jsp:attribute name="content">
         <div class="site-wrapper-inner">
             <h2>Make a Trip</h2>
-            <form role="form">
+            <form role="form" action = "/trip" method="Post"  >
                 <div class="form-group">
                     <label for="lastOrderTime">When will you stop taking orders?</label>
                     <input type=time class="form-control" id="lastOrderTime" name = "lastOrderTime" placeholder="Enter latest order time" required>
