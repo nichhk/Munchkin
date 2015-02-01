@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import com.google.appengine.api.datastore.*;
 
 // IF ERRORS WITH TIME CHECK OUT THE CHEAP SOLUTION AT LINE 38
 
@@ -21,6 +22,24 @@ public class Trip {
     List<String> customer = new ArrayList<String>();
     List<String> cusNumbers = new ArrayList<String>();
     String rating;
+    public Trip(Entity trip){
+        this.id = trip.getKey().getName();
+        this.dropOffLocation = (String)trip.getProperty("dropOffLocation");
+        this.eta = (String)trip.getProperty("eta");
+        this.lastOrder = (String)trip.getProperty("lastOrder");
+        this.restaurant = (String)trip.getProperty("restaurant");
+        this.flat = Double.parseDouble((String)trip.getProperty("flatFee"));
+        this.percentage = Double.parseDouble((String)trip.getProperty("percentFee"));
+        this.maxOrder = Integer.parseInt((String)trip.getProperty("maxOrder"));
+        this.phoneNumber = new User((String)trip.getProperty("user")).number;
+        DateToMilliseconds dateSetter = new DateToMilliseconds();
+        long[] timeLeftArray = dateSetter.milliToTimeString(Long.parseLong(lastOrder) - new Date().getTime()+21600000);
+        this.timeLeft = formatTimeLeft(timeLeftArray);
+    }
+
+
+
+
 
     public Trip(String userName, String eta, String lastOrder, String restaurant,
                 String flat, String percentage, String maxOrder, String phoneNumber, String dropOffLocation, String id){
