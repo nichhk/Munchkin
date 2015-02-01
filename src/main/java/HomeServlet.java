@@ -37,13 +37,16 @@ public class HomeServlet extends HttpServlet {
             Query q = new Query("trip");
             long curTime = new Date().getTime();
             Query.FilterPredicate timeLeft = new Query.FilterPredicate("lastOrder",
-                    Query.FilterOperator.GREATER_THAN, curTime-21600000);
+                    Query.FilterOperator.GREATER_THAN, (long)(curTime-21600000));
+             System.out.println("greater than"+(curTime-21600000));
+
             PreparedQuery pq = datastore.prepare(q.setFilter(timeLeft));
             ArrayList<Trip> trips = new ArrayList<Trip>();
-            System.out.println("About to look at pq");
+            //System.out.println("About to look at pq");
             int count = 0;
             for (Entity trip : pq.asIterable()){
-                System.out.println("At least one");
+                System.out.println("Is "+trip.getProperty("lastOrder"));
+
                 trips.add(new Trip(trip));
                 trips.get(count).addRating(Integer.parseInt(new User((String)trip.getProperty("user")).rating));
                 count++;

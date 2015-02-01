@@ -14,9 +14,9 @@ public class DepositServlet extends HttpServlet {
         System.out.println("estimated price is "+ estimatedPrice);
         String rounded =  new DecimalFormat("#.##").format(estimatedPrice);
         if(rounded.contains(".")) {
-            if(rounded.split(".")[0].length() == rounded.length() - 1) {
-                rounded += "0";
-            }
+            //if(rounded.split(".")[0].length() == rounded.length() - 1) {
+              //  rounded += "0";
+            //}
         }
         else{
             rounded+=".00";

@@ -60,7 +60,7 @@
                     <%
                         if (isApproved.compareTo("1") == 0){
                             out.println("<li><a href='/trip'>Make a trip</a></li>");
-                            out.println("<li><a href='/my_orders'>My orders</a></li>");
+                            out.println("<li><a href='/order_manager'>My orders</a></li>");
                             out.println("<li><a href=\"" + log +  "\">Log out</a></li>");
                         }
                         else{

@@ -38,18 +38,22 @@ public class OrderServlet extends HttpServlet {
         order.setProperty("trip",req.getParameter("tripId"));
         order.setProperty("email", LoginStatus.getUserEmail());
         double depositAmt = 0.0;
+        int count = 0;
         System.out.println("okay, now I'm adding each item");
         for (int i = 1; i <= numItems; i++){
-            Entity item = new Entity("item", new Date().getTime());
+            long currentTime = new Date().getTime();
+            Entity item = new Entity("item", currentTime);
             item.setProperty("order",order.getProperty("trip"));
             item.setProperty("foodItem", req.getParameter("foodItem" + i));
             item.setProperty("priceMin", req.getParameter("priceMin" + i));
             item.setProperty("priceMax", req.getParameter("priceMax" + i));
             item.setProperty("comments", req.getParameter("comments" + i));
+            count++;
             datastore.put(item);
             System.out.println("just put an item in the array");
             if (req.getParameter("altFoodItem"+i) != null){
                 Entity alt = new Entity("alt", item.getKey());
+
                 alt.setProperty("foodItem", req.getParameter("altFoodItem" + i));
                 alt.setProperty("priceMin", req.getParameter("altPriceMin" + i));
                 alt.setProperty("priceMax", req.getParameter("altPriceMax" + i));
@@ -73,6 +77,8 @@ public class OrderServlet extends HttpServlet {
             System.out.println("got the trip entity");
             depositAmt *= (Double.parseDouble((String)trip.getProperty("percentFee")) + 8.25 + 100.0) / 100.0;
             depositAmt += Double.parseDouble((String)trip.getProperty("flatFee"));
+            order.setProperty("estimatedPrice",depositAmt);
+            order.setProperty("totalItems",count);
         } catch (Exception e) {
             System.out.println("trying to get the trip entity failed");
             e.printStackTrace();}
