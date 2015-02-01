@@ -31,18 +31,16 @@ public class TripServlet extends HttpServlet {
         Entity trip = new Entity("trip", Double.toString(currentTime)); // Trips are Id'd by their timeStamp
         trip.setProperty("user", email);
 
-        trip.setProperty("lastOrder", req.getParameter("")); // Estimated time of delivery, use LUKES
-        trip.setProperty("restaurant", req.getParameter(""));
-        findFee(trip, req);
-        trip.setProperty("percentage",req.getParameter(""));
-        trip.setProperty("maxOrder",req.getParameter(""));
-        trip.setProperty("acceptUntil",req.getParameter(""));
-        trip.setProperty("percentageFee", req.getParameter(""));
-        trip.setProperty("maxOrder", req.getParameter(""));
+        trip.setProperty("dropOffLocation",req.getParameter("dropOffLocation"));
+        System.out.println("maxOrder is"+req.getParameter("maxOrder"));
+        System.out.println("restaurant is"+req.getParameter("restaurant"));
+        trip.setProperty("restaurant", req.getParameter("restaurant"));
+        trip.setProperty("maxOrder", req.getParameter("maxOrder"));
+
         findFee(trip, req);
         trip.setProperty("eta",getMilliTime(req,"eta"));
         trip.setProperty("lastOrder",getMilliTime(req,"lastOrder"));
-
+        datastore.put(trip);
         try {
             resp.sendRedirect("/trip_manager.jsp");
         }catch (Exception e){
@@ -51,19 +49,19 @@ public class TripServlet extends HttpServlet {
     }
     private void findFee(Entity trip, HttpServletRequest req){
         if(req.getParameter("flat")==null){
-           trip.setProperty("flatFee",0);
+           trip.setProperty("flatFee","0");
         }
         else{
             trip.setProperty("flatFee",req.getParameter("flatFee"));
         }
         if(req.getParameter("percentage")==null){
-            trip.setProperty("percentFee",0);
+            trip.setProperty("percentFee","0");
         }
         else{
             trip.setProperty("percentFee",req.getParameter("percentFee"));
         }
     }
-    private long getMilliTime(HttpServletRequest req, String property){
+    private String getMilliTime(HttpServletRequest req, String property){
         String dateTerm = property +"Date";
         System.out.println("Printing date"+req.getParameter(dateTerm));
         String[] splitDate = req.getParameter(dateTerm).split("-");
@@ -82,7 +80,7 @@ public class TripServlet extends HttpServlet {
         }
         */
         System.out.println(new DateToMilliseconds().timeToDate(new DateToMilliseconds().dateToTime(timeElements)));
-        return new DateToMilliseconds().dateToTime(timeElements);
+        return Long.toString(new DateToMilliseconds().dateToTime(timeElements));
     }
 
 }
