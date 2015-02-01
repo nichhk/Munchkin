@@ -23,18 +23,7 @@ public class ManageTripsServlet extends TripServlet {
 
         PreparedQuery pq = datastore.prepare(q.setFilter(onlyMine));
         for(Entity aTrip: pq.asIterable()){
-            myTrips.add(new Trip("You",
-                    (String)aTrip.getProperty("eta"),
-                    (String)aTrip.getProperty("lastOrder")
-                    ,(String)aTrip.getProperty("restaurant"),
-                    (String)aTrip.getProperty("flatFee"),
-                    (String)aTrip.getProperty("percentFee"),
-                    (String)aTrip.getProperty("maxOrder"),
-                    "Your number",
-                    (String)aTrip.getProperty("dropOffLocation"),
-                    (String)aTrip.getKey().getName()
-                    ));
-            
+            myTrips.add(new Trip(aTrip));
         }
 
     }

@@ -48,16 +48,7 @@ public class HomeServlet extends HttpServlet {
             int count = 0;
             for (Entity trip : pq.asIterable()){
                 System.out.println("At least one");
-                trips.add(new Trip(new User((String)trip.getProperty("user")).getName(),
-                        (String)trip.getProperty("eta"),
-                        (String)trip.getProperty("lastOrder")
-                        ,(String)trip.getProperty("restaurant"),
-                        (String)trip.getProperty("flatFee"),
-                        (String)trip.getProperty("percentFee"),
-                        (String)trip.getProperty("maxOrder"),
-                        new User((String)trip.getProperty("user")).number,
-                        (String)trip.getProperty("dropOffLocation"),
-                        (String)trip.getKey().getName()));
+                trips.add(new Trip(trip));
                 trips.get(count).addRating(Integer.parseInt(new User((String)trip.getProperty("user")).rating));
                 count++;
 
