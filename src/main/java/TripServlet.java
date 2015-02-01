@@ -36,7 +36,7 @@ public class TripServlet extends HttpServlet {
         String email = user.getEmail();
         Entity trip = new Entity("trip", Long.toString(currentTime)); // Trips are Id'd by their timeStamp
         trip.setProperty("user", email);
-
+        trip.setProperty("time", currentTime);
         trip.setProperty("dropOffLocation",req.getParameter("dropOffLocation"));
         System.out.println("maxOrder is"+req.getParameter("maxOrder"));
         System.out.println("restaurant is"+req.getParameter("restaurant"));
