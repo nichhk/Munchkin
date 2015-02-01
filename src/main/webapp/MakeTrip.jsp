@@ -84,8 +84,12 @@
                     </div>
                 </div>
                 <div class = "form-group">
-                    <label for = "maxOrders">Maximum number of orders you will accept?</label>
-                    <input type = "number" class = "form-control" id = "maxOrders" name = maxOrders" placeholder="Enter maximum number" required>
+                    <label for = "dropOffLocation">Where is the food getting dropped off at?</label>
+                    <input type = "text" class = "form-control" id = "dropOffLocation" name = "dropOffLocation" placeholder="Where are you dropping it off?" required>
+                </div>
+                <div class = "form-group">
+                    <label for = "maxOrder">Maximum number of orders you will accept?</label>
+                    <input type = "number" class = "form-control" id = "maxOrder" name = "maxOrder" placeholder="Enter maximum number" required>
                 </div>
                 <div class = "form-group">
 

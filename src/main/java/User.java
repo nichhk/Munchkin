@@ -14,7 +14,7 @@ public class User {
         Query.Filter uniqueEmail = new Query.FilterPredicate("email",
                 Query.FilterOperator.EQUAL, email);
         PreparedQuery pq = datastore.prepare(q.setFilter(uniqueEmail));
-        Entity user = new Entity("profile","");
+        Entity user = new Entity("profile","null");
         for(Entity e: pq.asIterable()){
             user = e;
         }

@@ -23,3 +23,4 @@
     </script>
     </jsp:attribute>
 
+</t:template>
