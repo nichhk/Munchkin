@@ -23,6 +23,8 @@ public class Trip {
     String rating;
     public Trip(Entity trip){
         System.out.println("His name is"+trip.getKey().getName());
+
+        this.user = (String)trip.getProperty("firstName")+ (String)trip.getProperty("lastName");
         this.time = Long.parseLong((String)trip.getKey().getName());
         System.out.println("the id is " + time);
         this.dropOffLocation = (String)trip.getProperty("dropOffLocation");
