@@ -4,23 +4,35 @@
 public class Trip {
     String user;
     String eta;
-    String etd;
-    String restaurantTime;
+    String lastOrder;
     String restaurant;
     double flat;
     double percentage;
     int maxOrder;
-    String acceptUntil;
-    public Trip(String user, String eta, String etd, String restaurantTime, String restaurant,
-                double flat, double percentage, int maxOrder, String acceptUntil){
-        this.user = user;
+    String timeLeft;
+    String phoneNumber;
+    public Trip(String userName, String eta, String lastOrder, String restaurant,
+                String flat, String percentage, String maxOrder, String phoneNumber){
         this.eta = eta;
-        this.etd = etd;
-        this.restaurantTime = restaurantTime;
+        this.lastOrder = lastOrder;
+        this.flat = Double.parseDouble(flat);
+        this.percentage = Double.parseDouble(percentage);
+        this.maxOrder = Integer.parseInt(maxOrder);
+        this.user = userName;
+        this.phoneNumber = phoneNumber;
+        //this.eta = new DateToMilliseconds().timeToDate(eta);
+        //this.lastOrder = new DateToMilliseconds().timeToDate(lastOrder);
         this.restaurant = restaurant;
-        this.flat = flat;
-        this.percentage = percentage;
-        this.maxOrder = maxOrder;
-        this.acceptUntil = acceptUntil;
+        DateToMilliseconds dateSetter = new DateToMilliseconds();
+        long[] timeLeftArray = dateSetter.milliToTimeString(Long.parseLong(lastOrder) - System.currentTimeMillis());
+        this.timeLeft = formatTimeLeft(timeLeftArray);
+        this.eta = dateSetter.timeToDate(Long.parseLong(eta));
+        this.lastOrder = dateSetter.timeToDate(Long.parseLong(lastOrder));
     }
+    private String formatTimeLeft(long[] timeLeftArray ){
+        String returnVal = timeLeftArray[0] +" hours, "+ timeLeftArray[1]+" minutes";
+        return returnVal;
+    }
+
+
 }

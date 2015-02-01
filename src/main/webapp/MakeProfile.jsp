@@ -11,19 +11,19 @@
         <form role="form" action="/create_profile" method = "Post">
             <div class="form-group">
                 <label for="firstName">First Name:</label>
-                <input type="firstName" class="form-control" id="firstName" placeholder="Enter First Name" required>
+                <input type="firstName" class="form-control" id="firstName" name = "firstName"  placeholder="Enter First Name" required>
             </div>
             <div class="form-group">
                 <label for="lastName">Last Name:</label>
-                <input type="lastName" class="form-control" id="lastName" placeholder="Enter Last Name" required>
+                <input type="lastName" class="form-control" id="lastName" name = "lastName" placeholder="Enter Last Name" required>
             </div>
             <div class="form-group">
                 <label for="email">Email Address:</label>
-                <input type="email" class="form-control" id="email" placeholder="Enter Email" required>
+                <input type="email" class="form-control" id="email" name ="email" placeholder="Enter Email" required>
             </div>
             <div class="form_group">
                 <label for = "college"> College:</label>
-                <input type = "college" class = "form-control" id = "college" placeholder="Enter College" required>
+                <input type = "college" class = "form-control" id = "college" name = "college" placeholder="Enter College" required>
             </div>
             <div class="form_group">
                 <label for = "year"> Year:</label>

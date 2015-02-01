@@ -5,43 +5,47 @@
     <jsp:attribute name="scripts">
         <script>
 
-            $(function() {
-                $("#percentFee").prop('disabled', true); //http://stackoverflow.com/questions/6982692/html5-input-type-date-default-value-to-today
-                $("#flatFee").prop('disabled', true);
-                var now = new Date();
-                var month = (now.getMonth() + 1);
-                var day = now.getDate();
-                if(month < 10)
-                    month = "0" + month;
-                if(day < 10)
-                    day = "0" + day;
-                var today = now.getFullYear() + '-' + month + '-' + day;
-                $("#etaDate").val(today);
-                $("#lastOrderDate").val(today);
+
+        $(function() {
+            $("#percentFee").prop('disabled', true); //http://stackoverflow.com/questions/6982692/html5-input-type-date-default-value-to-today
+            $("#flatFee").prop('disabled', true);
+            var now = new Date();
+            var month = (now.getMonth() + 1);
+            var day = now.getDate();
+            if(month < 10)
+                month = "0" + month;
+            if(day < 10)
+                day = "0" + day;
+            var today = now.getFullYear() + '-' + month + '-' + day;
+            $("#etaDate").val(today);
+            $("#lastOrderDate").val(today);
+        });
+        $(function () {
+
+            $('#percent').click(function () {
+
+                if ($("#percent").prop("checked")==true) {
+                    //alert("Able");
+                    $("#percentFee").prop('disabled', false);
+
+                }
+                else {
+                    //alert("Disable");
+                    $("#percentFee").prop('disabled', true);
+                    $("#percentFee").val("");
+                }
+
             });
-            $(function () {
-
-                $('#percent').click(function () {
-
-                    if ($("#percent").prop("checked")==true) {
-                        //alert("Able");
-                        $("#percentFee").prop('disabled', false);
-                    }
-                    else {
-                        //alert("Disable");
-                        $("#percentFee").prop('disabled', true);
-                    }
-
-                });
-                $('#flat').click(function () {
-                    if ($("#flat").prop("checked")==true) {
-                        $("#flatFee").prop('disabled', false);
-                    }
-                    else {
-                        $("#flatFee").prop('disabled', true);
-                    }
-                });
+            $('#flat').click(function () {
+                if ($("#flat").prop("checked")==true) {
+                    $("#flatFee").prop('disabled', false);
+                }
+                else {
+                    $("#flatFee").prop('disabled', true);
+                    $("#flatFee").val("");
+                }
             });
+        });
 
         </script>
 
@@ -50,7 +54,7 @@
     <jsp:attribute name="content">
         <div class="site-wrapper-inner">
             <h2>Make a Trip</h2>
-            <form role="form">
+            <form role="form" action = "/trip" method="Post"  >
                 <div class="form-group">
                     <label for="lastOrderTime">When will you stop taking orders?</label>
                     <input type=time class="form-control" id="lastOrderTime" name = "lastOrderTime" placeholder="Enter latest order time" required>
