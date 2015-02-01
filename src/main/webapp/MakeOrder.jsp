@@ -22,10 +22,11 @@
             if (type.localeCompare("alt") == 0){
                 var num = $(button).attr("name").split("item")[1];
                 console.log(num);
-                var food_name = $('<div class="form-group"> <label for="altFoodItem'+num+'">Name of food item</label><input type="text" class="form-control" id="firstItem'+num+'alt" name="firstItem'+num+'alt" placeholder="Enter the food" required> </div>');
-                var price_min = $('<div class="form-group"> <label for="altPriceMin'+num+'">Minimum Price</label><input type="text" class="form-control" id="priceMin'+num+'alt" name="priceMin'+num+'alt"placeholder="Enter minimum price" required> </div>');
-                var price_max = $('<div class="form-group"> <label for="altPriceMax'+num+'">Maximum Price</label><input type="text" class="form-control" id="priceMax'+num+'alt" name="priceMax'+num+'alt"placeholder="Enter maximum price" required> </div>');
-                var comments = $('<div class="form-group"> <label for="altComments'+num+'">Additional Comments</label><input type="text" class="form-control" id="comments'+num+'alt" name="comments'+num+'alt"placeholder="Enter comments (i.e. no pickles, extra ketchup)" required> </div>');
+
+                var food_name = $('<div class="form-group"> <label for="altFoodItem'+num+'">Name of food item</label><input type="text" class="form-control" id="altFirstItem'+num + '" name="firstItem'+num+'alt" placeholder="Enter the food"> </div>');
+                var price_min = $('<div class="form-group"> <label for="altPriceMin'+num+'">Minimum Price</label><input type="text" class="form-control" id="altPriceMin'+num+'" name="priceMin'+num+'alt"placeholder="Enter minimum price"> </div>');
+                var price_max = $('<div class="form-group"> <label for="altPriceMax'+num+'">Maximum Price</label><input type="text" class="form-control" id="altPriceMax'+num + '"  name="priceMax'+num+'alt"placeholder="Enter maximum price"> </div>');
+                var comments = $('<div class="form-group"> <label for="altComments'+num+'">Additional Comments</label><input type="text" class="form-control" id="altComments'+num+'" name="comments'+num+'alt"placeholder="Enter comments (e.g. no pickles, extra ketchup)" > </div>');
                 var newDiv = $("<div>").attr("id", "alt"+num)
                         .append($('<h3>').html("Alternate Food Item"))
                         .append(food_name)
@@ -38,7 +39,7 @@
                 var food_name = $('<div class="form-group"> <label for="foodItem'+count+'">Name of food item</label><input type="text" class="form-control" id="firstItem'+count+'" name="firstItem'+count+'" placeholder="Enter the food" required> </div>');
                 var price_min = $('<div class="form-group"> <label for="priceMin'+count+'">Minimum Price</label><input type="text" class="form-control" id="priceMin'+count+'" name="priceMin'+count+'"placeholder="Enter minimum price" required> </div>');
                 var price_max = $('<div class="form-group"> <label for="priceMax'+count+'">Maximum Price</label><input type="text" class="form-control" id="priceMax'+count+'" name="priceMax'+count+'"placeholder="Enter maximum price" required> </div>');
-                var comments = $('<div class="form-group"> <label for="comments'+count+'">Additional Comments</label><input type="text" class="form-control" id="comments'+count+'" name="comments'+count+'"placeholder="Enter comments (i.e. no pickles, extra ketchup)" required> </div>');
+                var comments = $('<div class="form-group"> <label for="comments'+count+'">Additional Comments</label><input type="text" class="form-control" id="comments'+count+'" name="comments'+count+'"placeholder="Enter comments (e.g no pickles, extra ketchup)"> </div>');
                 var button = $('<button class="btn btn-primary" name="item'+count+'" onclick="addNewFoodOrder(this, \'alt\')"><span class="glyphicon glyphicon-plus"></span> Alternate</button>');
 
                 $("#inputs").append("<h3>Food order:</h3>");
@@ -53,6 +54,27 @@
                 newDiv.appendTo($('#inputs'));
                 $('#numItems').val(count);
                 count++;
+            }
+        }
+        var alternateFoodItems = $document.getElementsByTagName("div");
+        $.each( alternateFoodItems, function(index, alternateFoodItems){
+            if (alternateFoodItem.attr().indexOf("alt") >= 0)
+            {
+                if (alternateFoodItem.food_name != null && alternateFoodItem.price_min == null && alternateFoodItem.price_max == null)
+                {
+                    alert("An alternate food order requires you to fill out a food name, minimum price and maximum price. ");
+                    break;
+                }
+                else if (alternateFoodItem.food_name == null && alternateFoodItem.price_min != null && alternateFoodItem.price_max == null))
+                {
+                    alert("An alternate food order requires you to fill out a food name, minimum price and maximum price. ");
+                    break;
+                }
+                else if (alternateFoodItem.food_name == null && alternateFoodItem.price_min == null && alternateFoodItem.price_max != null)
+                {
+                    alert("An alternate food order requires you to fill out a food name, minimum price and maximum price. ");
+                    break;
+                }
             }
         }
         </script>
@@ -85,7 +107,7 @@
                                         </div>
                                         <div class="form_group">
                                             <label for = "comments"> Additional Comments:</label>
-                                            <input type = "text" class = "form-control" id ="comments" name="comments1" placeholder="Enter Comments (i.e. no pickles, extra ketchup" required>
+                                            <input type = "text" class = "form-control" id ="comments" name="comments1" placeholder="Enter Comments (e.g. no pickles, extra ketchup)">
                                         </div>
                                         <button class="btn btn-primary" name='item1' onclick="addNewFoodOrder(this, 'alt')"><span class="glyphicon glyphicon-plus"></span> Alternate</button>
                                     </div>
