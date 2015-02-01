@@ -1,5 +1,11 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
+String user;
+String eta;
+String restaurant;
+double flat;
+double percentage;
+String timeLeft;
 
 <t:template isApproved="${isApproved}" log="${log}" page="${page}">
     <jsp:attribute name="scripts">
@@ -7,8 +13,8 @@
         $(function() {
             $.each( ${responseJson}, function(index, trip) {
                 $('<div>').appendTo('#trips')
-                        .append($('<span>').html(trip.name))
-                        .append($('<span>').html(trip.rating))
+                        .append($('<span>').html(trip.user))
+                        .append($('<span>').html(trip.eta))
                         .append($('<span style = "font-size:160%">').html(trip.location))
                         .append($('<span>').html(trip.eta))
                         .append($('<p>').html("thanks for clicking").hide())
@@ -22,3 +28,4 @@
         });
     </script>
     </jsp:attribute>
+</t:template>

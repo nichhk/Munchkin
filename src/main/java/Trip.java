@@ -11,8 +11,10 @@ public class Trip {
     int maxOrder;
     String timeLeft;
     String phoneNumber;
+    String dropOffLocation;
     public Trip(String userName, String eta, String lastOrder, String restaurant,
-                String flat, String percentage, String maxOrder, String phoneNumber){
+                String flat, String percentage, String maxOrder, String phoneNumber,
+                String dropOffLocation){
         this.eta = eta;
         this.lastOrder = lastOrder;
         this.flat = Double.parseDouble(flat);
@@ -28,6 +30,7 @@ public class Trip {
         this.timeLeft = formatTimeLeft(timeLeftArray);
         this.eta = dateSetter.timeToDate(Long.parseLong(eta));
         this.lastOrder = dateSetter.timeToDate(Long.parseLong(lastOrder));
+        this.dropOffLocation = dropOffLocation;
     }
     private String formatTimeLeft(long[] timeLeftArray ){
         String returnVal = timeLeftArray[0] +" hours, "+ timeLeftArray[1]+" minutes";
