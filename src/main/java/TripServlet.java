@@ -53,13 +53,13 @@ public class TripServlet extends HttpServlet {
         }
     }
     private void findFee(Entity trip, HttpServletRequest req){
-        if(req.getParameter("flat")==null){
-           trip.setProperty("flatFee","0");
+        if(req.getParameter("flat")==null || req.getParameter("flatFee")==null){
+           trip.setProperty("flatFee", "0");
         }
         else{
             trip.setProperty("flatFee",req.getParameter("flatFee"));
         }
-        if(req.getParameter("percentage")==null){
+        if((req.getParameter("percentage")==null)||req.getParameter("percentFee")==null){
             trip.setProperty("percentFee","0");
         }
         else{

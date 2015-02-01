@@ -1,6 +1,4 @@
 import com.google.appengine.api.datastore.*;
-import com.google.appengine.api.users.UserService;
-import com.google.appengine.api.users.UserServiceFactory;
 import com.google.gson.Gson;
 
 import javax.servlet.http.HttpServlet;
@@ -19,13 +17,13 @@ public class ManageOrdersServlet extends HttpServlet {
         req.setAttribute("page", "order_manager");
         req.setAttribute("isApproved", "1");
         req.setAttribute("log", LoginStatus.getLogOutUrl("/"));
-        myOrders = new ArrayList<Order>();
-        myTrips = new ArrayList<Trip>();
-        UserService userService = UserServiceFactory.getUserService(); // Finds the user's email from OAuth
-        com.google.appengine.api.users.User user = userService.getCurrentUser();
-        String email = user.getEmail();
+        String getFor = (String)req.getAttribute("for");
+        myOrders = new ArrayList<>();
+        myTrips = new ArrayList<>();
+        String email = LoginStatus.getUserEmail();
 
         Query q = new Query("order");
+
         Query.Filter onlyMine = new Query.FilterPredicate("email",
                 Query.FilterOperator.EQUAL, email);
         PreparedQuery pq = datastore.prepare(q.setFilter(onlyMine));

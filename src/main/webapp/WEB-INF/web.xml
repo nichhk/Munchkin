@@ -44,6 +44,10 @@
     <servlet-name>manageTrips</servlet-name>
     <servlet-class>ManageTripsServlet</servlet-class>
 </servlet>
+    <servlet>
+        <servlet-name>receipt</servlet-name>
+        <servlet-class>ReceiptServlet</servlet-class>
+    </servlet>
 
 
 <servlet-mapping>
@@ -86,10 +90,14 @@
     <servlet-name>manageTrips</servlet-name>
     <url-pattern>/trip_manager</url-pattern>
 </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>manageOrders</servlet-name>
-        <url-pattern>/order_manager</url-pattern>
-    </servlet-mapping>
+<servlet-mapping>
+    <servlet-name>manageOrders</servlet-name>
+    <url-pattern>/order_manager</url-pattern>
+</servlet-mapping>
+<servlet-mapping>
+    <servlet-name>receipt</servlet-name>
+    <url-pattern>/receipt</url-pattern>
+</servlet-mapping>
 
 <welcome-file-list>
     <welcome-file>home</welcome-file>

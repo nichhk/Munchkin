@@ -24,7 +24,7 @@
                 console.log(num);
                 var food_name = $('<div class="form-group"> <label for="altFoodItem'+num+'">Name of food item</label><input type="text"  class="form-control" id="firstItem'+num+'alt" name="firstItem'+num+'alt" placeholder="Enter the food" required> </div>');
                 var price_max = $('<div class="form-group"> <label for="altPriceMax'+num+'">Maximum Price</label><input type="number" step="0.01" min="0" class="form-control" id="priceMax'+num+'alt" name="priceMax'+num+'alt"placeholder="Enter maximum price" required> </div>');
-                var comments = $('<div class="form-group"> <label for="altComments'+num+'">Additional Comments</label><input type="text" step="0.01" min="0" class="form-control" id="comments'+num+'alt" name="comments'+num+'alt"placeholder="Enter comments (i.e. no pickles, extra ketchup)" required> </div>');
+                var comments = $('<div class="form-group"> <label for="altComments'+num+'">Additional Comments</label><input type="text" step="0.01" min="0" class="form-control" id="comments'+num+'alt" name="comments'+num+'alt"placeholder="Enter comments (i.e. no pickles, extra ketchup)"> </div>');
                 var newDiv = $("<div>").attr("id", "alt"+num)
                         .append($('<h3>').html("Alternate Food Item"))
                         .append(food_name)
@@ -35,10 +35,9 @@
             else{
                 var food_name = $('<div class="form-group"> <label for="foodItem'+count+'">Name of food item</label><input type="text" class="form-control" id="firstItem'+count+'" name="firstItem'+count+'" placeholder="Enter the food" required> </div>');
                 var price_max = $('<div class="form-group"> <label for="priceMax'+count+'">Maximum Price</label><input type="number" step="0.01" min="0" class="form-control" id="priceMax'+count+'" name="priceMax'+count+'"placeholder="Enter maximum price" required> </div>');
-                var comments = $('<div class="form-group"> <label for="comments'+count+'">Additional Comments</label><input type="text" class="form-control" id="comments'+count+'" name="comments'+count+'"placeholder="Enter comments (i.e. no pickles, extra ketchup)" required> </div>');
+                var comments = $('<div class="form-group"> <label for="comments'+count+'">Additional Comments</label><input type="text" class="form-control" id="comments'+count+'" name="comments'+count+'"placeholder="Enter comments (i.e. no pickles, extra ketchup)"> </div>');
                 var button = $('<button class="btn btn-default" name="item'+count+'" onclick="addNewFoodOrder(this, \'alt\')"><span class="glyphicon glyphicon-plus"></span> Alternate</button>');
 
-                $("#inputs").append("<h3>Food order:</h3>");
                 $("#inputs").append("<br>");
                 var newDiv = $("<div>").attr("id", "item"+count)
                         .append($('<h3>').html("Food Item"))
@@ -74,7 +73,7 @@
 
                                         <div class="form-group">
                                             <label for="priceMax">Maximum Price:</label>
-                                            <input type="number" class="form-control" id="priceMax" step="0.01" min="0" name="priceMax1" placeholder="Enter Maximum Price" pattern= "\d?\d.\d\d" maxlength = 5  size = 5 required>
+                                            <input type="number" class="form-control" id="priceMax" name="priceMax1" placeholder="Enter Maximum Price" pattern= "\d?\d.\d\d" maxlength = 5  size = 5 required>
                                         </div>
                                         <div class="form_group">
                                             <label for = "comments"> Additional Comments:</label>

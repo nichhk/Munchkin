@@ -9,27 +9,39 @@
                 console.log("here");
                 $.each( ${responseJson}, function(index, order) {
                     for( i = 0; i<order.primaryItems.length;i++){
-                        order.primaryItems[i];
-                        order.altItems[i];
-                        order.primaryMax[i];
-                        order.altMax[i];
-                        order.primaryComments[i];
-                        order.altComments[i];
+                        var pPrice = "$" + order.primaryMax[i].toString();
+                        var primaryRow = $('<div class = "row" id = "primaryRow">');
+                        var k = i+1;
+                        var primaryFood = $('<div>').html("Food Item #" + k + ": "+order.primaryItems[i] + " (" + pPrice + ")");
+                        primaryRow.append(primaryFood);
+                        if (order.primaryComments[i] != null && order.primaryComments[i].localeCompare("") != 0) {
+                            var comments = $('<div>').html("Comments: " + order.primaryComments[i]);
+                            primaryRow.append(comments);
+                        }
+                        var altRow = $('<div class = "row" id = "altRow">');
+                        if (order.altItems[i] == null) {
+                            console.log("hello" + i);
+                        }
+                        if (order.altItems[i]==order.primaryItems[i]) {
+                            console.log("yello" + i);
+                        }
+                        if (order.altItems[i] != null && (!(order.altItems[i]===order.primaryItems[i]))) {
+                            console.log("hey");
+                            var altPrice = "$" + order.altMax[i].toString();
+                            var altFood = $('<div style = "color : #A0A0A1">').html("Alternate Food Item #" + k  + ": "+order.altItems[i] + " (" + altPrice + ")");
+                            altRow.append(altFood);
+                            if (order.altComments[i] != null && order.altComments[i].localeCompare("") != 0) {
+                                var comments = $('<div style = "color : #A0A0A1">').html("Comments: " + order.altComments[i]);
+                                altRow.append(comments);
+                            }
+                        }
                         $('<div id = "toClick">').appendTo("#orders")
-                                .append("Food Item: "+order.primaryItems[i])
-                                .append(" \n Max price:" + order.primaryMax[i])
-                                .append("\n Comments:" + order.primaryComments[i]);
-
-
-
-
-
-
+                                .append(primaryRow)
+                                .append(altRow)
+                                .addClass('well well-lg')
                     }
-
                 });
             });
-
         </script>
     </jsp:attribute>
 

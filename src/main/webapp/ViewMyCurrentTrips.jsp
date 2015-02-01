@@ -13,23 +13,24 @@
                     for (var i = 0; i < numCustomers; i++) {
                         var customer = eachCustomer[i].split(" ");
                         var customerName = customer[0] + " " + customer[1];
-                        var phone = customer[2];
-                        var newSpan = $('<p>').append($('<a>').html(customerName));
+                        var newSpan = $('<p>').append($('<a href="/receipt?email=' + customer[2] + '&tripId=' + trip.time + '">').html(customerName));
                         allCustomers.append(newSpan);
                     }
-                    var myTripID = trip.time;
+                    var TripID = trip.time;
                     var textForm = $('<form role = "form" action = "send_sms" method="get">');
-
                     var formInput = $('<input type = "submit" value = "Text the Customers" id = "text">');
-                    var hiddenText = $('<input type = "hidden" value = myTripID id = "id">');
-                    textForm.append(formInput);
+                    var thisString = "<input type = \"hidden\" id = \"id\" name = \"id\" value=\""+ TripID+"\" >";
+                    var hiddenText = $(thisString);
                     textForm.append(hiddenText);
 
                     var timeRow = $('<div class = "row" id = "timeRow">');
                     var timeLeft = $('<div class="col-sm-4" style = "color:red">').html(trip.timeLeft);
                     var timeETA = $('<div class = "col-sm-4">').html(trip.eta);
                     timeRow.append(timeLeft);
+
                     timeRow.append(timeETA);
+
+
 
                     $('<div id = "toClick">').appendTo('#trips')
                             .append($('<span style = "font-size:160%; font-weight:bold">').html(trip.restaurant))

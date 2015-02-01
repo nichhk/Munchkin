@@ -61,7 +61,7 @@
                         if (isApproved.compareTo("1") == 0){
                             out.println("<li id=\"trip\"><a href='/trip'>Make a trip</a></li>");
                             out.println("<li id=\"trip_manager\"><a href='/trip_manager'>My trips</a></li>");
-                            out.println("<li id=\"order_manager\"><a href='/order_manager'>My orders</a></li>");
+                            out.println("<li id=\"order_manager?for=customer\"><a href='/order_manager'>My orders</a></li>");
                             out.println("<li><a href=\"" + log +  "\">Log out</a></li>");
                         }
                         else{
