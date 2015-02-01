@@ -1,6 +1,6 @@
-import com.google.appengine.api.datastore.*;
-import com.google.appengine.api.datastore.Query.FilterOperator;
-import com.google.appengine.api.datastore.Query.FilterPredicate;
+import com.google.appengine.api.datastore.DatastoreService;
+import com.google.appengine.api.datastore.DatastoreServiceFactory;
+import com.google.appengine.api.datastore.Entity;
 import com.google.appengine.api.users.User;
 import com.google.appengine.api.users.UserService;
 import com.google.appengine.api.users.UserServiceFactory;
@@ -8,7 +8,6 @@ import com.google.appengine.api.users.UserServiceFactory;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.ArrayList;
 
 /**
  * Created by compsci on 1/31/15.
@@ -29,7 +28,7 @@ public class TripServlet extends HttpServlet {
         trip.setProperty("etd", req.getParameter("")); // Estimated time of delivery
         trip.setProperty("restaurantTime", req.getParameter(""));
         trip.setProperty("restaurant", req.getParameter(""));
-        trip.setProperty("flat", findFee(req));
+        //trip.setProperty("flat", findFee(req));
         trip.setProperty("percentage",req.getParameter(""));
         trip.setProperty("maxOrder",req.getParameter(""));
         trip.setProperty("acceptUntil",req.getParameter(""));
