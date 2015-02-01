@@ -46,7 +46,7 @@ public class TripServlet extends HttpServlet {
         findFee(trip, req);
         trip.setProperty("eta",getMilliTime(req,"eta"));
         trip.setProperty("lastOrder",getMilliTime(req,"lastOrder"));
-        
+
         try {
             resp.sendRedirect("/trip_manager.jsp");
         }catch (Exception e){
@@ -85,7 +85,7 @@ public class TripServlet extends HttpServlet {
             System.out.println(j);
         }
         */
-
+        System.out.println(new DateToMilliseconds().timeToDate(new DateToMilliseconds().dateToTime(timeElements)));
         return new DateToMilliseconds().dateToTime(timeElements);
     }
 
