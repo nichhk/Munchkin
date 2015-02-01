@@ -8,6 +8,7 @@ public class User {
     String firstName;
     String lastName;
     String number;
+    String rating;
     static DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
     public User(String email){
         Query q = new Query("profile");
@@ -21,6 +22,7 @@ public class User {
         this.firstName = (String)user.getProperty("firstName");
         this.lastName = (String)user.getProperty("lastName");
         this.number = (String)user.getProperty("phoneNumber");
+        this.rating = (String)user.getProperty("rating");
 
     }
     public User(String email, String firstName, String lastName, String number){
