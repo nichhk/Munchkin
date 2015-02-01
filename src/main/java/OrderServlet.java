@@ -13,11 +13,15 @@ import javax.servlet.http.HttpServletResponse;
 public class OrderServlet extends HttpServlet {
     private static DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
 
-
+    @Override
+    public void doGet(HttpServletRequest req, HttpServletResponse resp){
+        
+    }
     @Override
     public void doPost(HttpServletRequest req, HttpServletResponse resp){
         int numItems = Integer.parseInt(req.getParameter("numItems"));
         Entity order = new Entity("order", KeyFactory.createKey("trip", req.getParameter("tripId")));
+        order.setProperty("email", LoginStatus.getUserEmail());
         for (int i = 1; i <= numItems; i++){
             Entity item = new Entity("item", order.getKey());
             item.setProperty("foodItem", req.getParameter("foodItem" + i));
