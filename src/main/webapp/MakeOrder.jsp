@@ -60,40 +60,49 @@
 
     <jsp:attribute name="content">
         <div class="site-wrapper-inner">
-
-        <form role="form" method ="Post" id ="orderForm">
-            <input type="text" name="trip" style="display:none" value="${tripId}">
-            <div id="inputs">
-                <div id="item1">
-                    <div class="form-group">
-                        <label for="foodItem">Name of food item</label>
-                        <input type="text" class="form-control" id="foodItem" name="foodItem1" placeholder="Enter the food" required>
+            <div class="cover-container">
+                <!--
+                thanks to : http://bootsnipp.com/snippets/featured/bootstrap-3x-contact-form-layout
+                -->
+                <div id="content" class="inner cover" style="text-align: left">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <form role="form" method ="Post" id ="orderForm">
+                                <input type="text" name="trip" style="display:none" value="${tripId}">
+                                <div id="inputs">
+                                    <div id="item1">
+                                        <div class="form-group">
+                                            <label for="foodItem">Name of food item</label>
+                                            <input type="text" class="form-control" id="foodItem" name="foodItem1" placeholder="Enter the food" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="priceMin">Minimum Price:</label>
+                                            <input type="number" class="form-control" id="priceMin" name="priceMin1" placeholder="Enter Minimum Price" pattern= "\d?\d.\d\d" maxlength = 5  size = 5 required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="priceMax">Maximum Price:</label>
+                                            <input type="number" class="form-control" id="priceMax" name="priceMax1" placeholder="Enter Maximum Price" pattern= "\d?\d.\d\d" maxlength = 5  size = 5 required>
+                                        </div>
+                                        <div class="form_group">
+                                            <label for = "comments"> Additional Comments:</label>
+                                            <input type = "text" class = "form-control" id ="comments" name="comments1" placeholder="Enter Comments (i.e. no pickles, extra ketchup" required>
+                                        </div>
+                                        <button class="btn btn-primary" name='item1' onclick="addNewFoodOrder(this, 'alt')"><span class="glyphicon glyphicon-plus"></span> Alternate</button>
+                                    </div>
+                                </div>
+                                <br>
+                                <button onclick="addNewFoodOrder(this, 'food')">
+                                    <span class="glyphicon glyphicon-plus"></span>
+                                </button>
+                                <br>
+                                <input type="number" name="numItems" id="numItems" style="display: none" value=1>
+                                <button type="submit" style="margin-top:10px" class="btn btn-default">Submit</button>
+                            </form>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label for="priceMin">Minimum Price:</label>
-                        <input type="number" class="form-control" id="priceMin" name="priceMin1" placeholder="Enter Minimum Price" pattern= "\d?\d.\d\d" maxlength = 5  size = 5 required>
-                    </div>
-                    <div class="form-group">
-                        <label for="priceMax">Maximum Price:</label>
-                        <input type="number" class="form-control" id="priceMax" name="priceMax1" placeholder="Enter Maximum Price" pattern= "\d?\d.\d\d" maxlength = 5  size = 5 required>
-                    </div>
-                    <div class="form_group">
-                        <label for = "comments"> Additional Comments:</label>
-                        <input type = "text" class = "form-control" id ="comments" name="comments1" placeholder="Enter Comments (i.e. no pickles, extra ketchup" required>
-                    </div>
-                    <button class="btn btn-primary" name='item1' onclick="addNewFoodOrder(this, 'alt')"><span class="glyphicon glyphicon-plus"></span> Alternate</button>
                 </div>
             </div>
-            <br>
-            <button onclick="addNewFoodOrder(this, 'food')">
-                <span class="glyphicon glyphicon-plus"></span>
-            </button>
-            <br>
-            <input type="number" name="numItems" id="numItems" style="display: none" value=1>
-            <button type="submit" style="margin-top:10px" class="btn btn-default">Submit</button>
-        </form>
         </div>
-
     </jsp:attribute>
 
 </t:template>

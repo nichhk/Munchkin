@@ -23,6 +23,7 @@ public class DateToMilliseconds{
         int mHour = calendar.get(Calendar.HOUR);
         int amOrPm = calendar.get(Calendar.HOUR_OF_DAY);
         int mMinute = calendar.get((Calendar.MINUTE));
+
         return (mHour==0?12:mHour)+":"+mMinute + (amOrPm<12?"am":"pm")+ " "+ (mMonth+1)+"/"+mDay;
     }
     public long[] milliToTimeString(long mill){ // Formats a millisecond time to a String
