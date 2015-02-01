@@ -2,6 +2,7 @@ import com.google.appengine.api.datastore.DatastoreService;
 import com.google.appengine.api.datastore.DatastoreServiceFactory;
 import com.google.appengine.api.datastore.Entity;
 import com.google.appengine.api.datastore.KeyFactory;
+import com.google.appengine.api.users.*;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -19,6 +20,9 @@ public class OrderServlet extends HttpServlet {
     }
     @Override
     public void doPost(HttpServletRequest req, HttpServletResponse resp){
+        UserService userService = UserServiceFactory.getUserService(); // Finds the user's email from OAuth
+        com.google.appengine.api.users.User user = userService.getCurrentUser();
+        String email = user.getEmail();
         int numItems = Integer.parseInt(req.getParameter("numItems"));
         Entity order = new Entity("order", KeyFactory.createKey("trip", req.getParameter("tripId")));
         order.setProperty("email", LoginStatus.getUserEmail());
