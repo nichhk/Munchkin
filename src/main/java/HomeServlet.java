@@ -51,8 +51,8 @@ public class HomeServlet extends HttpServlet {
                         (String)trip.getProperty("eta"),
                         (String)trip.getProperty("lastOrder")
                         ,(String)trip.getProperty("restaurant"),
-                        (String)trip.getProperty("flat"),
-                        (String)trip.getProperty("percentage"),
+                        (String)trip.getProperty("flatFee"),
+                        (String)trip.getProperty("percentFee"),
                         (String)trip.getProperty("maxOrder"),
                         new User((String)trip.getProperty("user")).number,
                         (String)trip.getProperty("dropOffLocation"),
