@@ -28,7 +28,13 @@ public class LoginStatus{
         }
         return isUser;
     }
-
+    public static String getUserEmail(){
+        User user = userService.getCurrentUser();
+        if (user == null){
+            return null;
+        }
+        return user.getEmail();
+    }
     public static String getLogOutUrl(String path){
         return userService.createLogoutURL(path);
     }

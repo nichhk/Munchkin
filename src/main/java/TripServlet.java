@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Date;
 
 
 /**
@@ -19,16 +20,21 @@ public class TripServlet extends HttpServlet {
     private static DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
 
     public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-
+        req.setAttribute("page", "trip");
+        req.setAttribute("isApproved", "1");
+        req.setAttribute("log", LoginStatus.getLogInUrl("/create_profile"));
+        try {
+            req.getRequestDispatcher("MakeTrip.jsp").forward(req, resp);
+        } catch (Exception e) { e.printStackTrace(); }
     }
 
     @Override
     public void doPost(HttpServletRequest req, HttpServletResponse resp){
-        double currentTime = System.currentTimeMillis();
+        long currentTime = new Date().getTime();
         UserService userService = UserServiceFactory.getUserService(); // Finds the user's email from OAuth
         User user = userService.getCurrentUser();
         String email = user.getEmail();
-        Entity trip = new Entity("trip", Double.toString(currentTime)); // Trips are Id'd by their timeStamp
+        Entity trip = new Entity("trip", Long.toString(currentTime)); // Trips are Id'd by their timeStamp
         trip.setProperty("user", email);
 
         trip.setProperty("dropOffLocation",req.getParameter("dropOffLocation"));
@@ -42,7 +48,7 @@ public class TripServlet extends HttpServlet {
         trip.setProperty("lastOrder",getMilliTime(req,"lastOrder"));
         datastore.put(trip);
         try {
-            resp.sendRedirect("/trip_manager.jsp");
+            resp.sendRedirect("/");
         }catch (Exception e){
             e.printStackTrace();
         }

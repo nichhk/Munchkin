@@ -1,15 +1,11 @@
-
 import com.google.appengine.api.datastore.*;
 import com.google.appengine.repackaged.com.google.gson.Gson;
-
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import java.io.IOException;
-
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  * Created by compsci on 1/31/15.
@@ -39,10 +35,10 @@ public class HomeServlet extends HttpServlet {
             req.setAttribute("isApproved", "1");
             req.setAttribute("log", LoginStatus.getLogOutUrl("/"));
             Query q = new Query("trip");
-            long curTime = System.currentTimeMillis();
-            //Query.FilterPredicate timeLeft = new Query.FilterPredicate("lastOrder", Query.FilterOperator.GREATER_THAN, curTime);
-            //PreparedQuery pq = datastore.prepare(q.setFilter(timeLeft));
-            PreparedQuery pq = datastore.prepare(q);
+            long curTime = new Date().getTime();
+            Query.FilterPredicate timeLeft = new Query.FilterPredicate("lastOrder",
+                    Query.FilterOperator.GREATER_THAN, curTime-21600000);
+            PreparedQuery pq = datastore.prepare(q.setFilter(timeLeft));
             ArrayList<Trip> trips = new ArrayList<Trip>();
             System.out.println("About to look at pq");
             int count = 0;
@@ -51,7 +47,6 @@ public class HomeServlet extends HttpServlet {
                 trips.add(new Trip(trip));
                 trips.get(count).addRating(Integer.parseInt(new User((String)trip.getProperty("user")).rating));
                 count++;
-
             }
 
             System.out.println("Done");

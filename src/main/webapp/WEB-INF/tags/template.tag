@@ -57,14 +57,14 @@
             </div>
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav navbar-right">
-                    <li id="trip"><a href="/trip">Make a trip</a></li>
-                    <li id="my_orders"><a href="/my_orders">My orders</a></li>
                     <%
                         if (isApproved.compareTo("1") == 0){
-                            out.println("<li><a href=\"" + log +  "\">Log Out</a></li>");
+                            out.println("<li><a href='/trip'>Make a trip</a></li>");
+                            out.println("<li><a href='/my_orders'>My orders</a></li>");
+                            out.println("<li><a href=\"" + log +  "\">Log out</a></li>");
                         }
                         else{
-                            out.println("<li><a href=\"" + log +  "\">Log In</a></li>");
+                            out.println("<li><a href=\"" + log +  "\">Log in</a></li>");
                         }
                     %>
                 </ul>
