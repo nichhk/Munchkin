@@ -9,8 +9,19 @@
     </jsp:attribute>
     <jsp:attribute name="content">
         <div class="site-wrapper-inner">
-            <a class="btn btn-primary" href="${logIn}">Log in</a>
-            <a class="btn btn-primary" href="${createProf}">Create an account</a>
+            <div class="cover-container">
+                <!--
+                thanks to : http://bootsnipp.com/snippets/featured/bootstrap-3x-contact-form-layout
+                -->
+                <div id="content" class="inner cover" style="text-align: left">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <a class="btn btn-primary" href="${logIn}">Log in</a>
+                            <a class="btn btn-primary" href="${createProf}">Create an account</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
 
     </jsp:attribute>

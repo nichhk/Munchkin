@@ -1,5 +1,7 @@
 import com.google.appengine.api.datastore.*;
-import com.google.appengine.api.users.*;
+import com.google.appengine.api.users.UserService;
+import com.google.appengine.api.users.UserServiceFactory;
+import com.google.gson.Gson;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -10,10 +12,13 @@ import java.util.List;
  * Created by compsci on 1/31/15.
  */
 public class ManageTripsServlet extends TripServlet {
-    private List<Trip> myTrips = new ArrayList<Trip>();
     private static DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
 
     public void doGet(HttpServletRequest req, HttpServletResponse resp){
+        req.setAttribute("page", "my_trips");
+        req.setAttribute("isApproved", "1");
+        req.setAttribute("log", LoginStatus.getLogOutUrl("/"));
+        List<Trip> myTrips = new ArrayList<Trip>();
         int count = 0;
         UserService userService = UserServiceFactory.getUserService(); // Finds the user's email from OAuth
         com.google.appengine.api.users.User user = userService.getCurrentUser();
@@ -42,7 +47,7 @@ public class ManageTripsServlet extends TripServlet {
                 System.out.println(cusEmail);
                 try {
                     Entity customer = datastore.get(KeyFactory.createKey("profile",cusEmail));
-                    myTrips.get(count).addCustomer(customer.getProperty("firstName")+" " +customer.getProperty("lastName")+ " "+ customer.getProperty("phoneNumber"));
+                    myTrips.get(count).addCustomer(customer.getProperty("firstName") + " " +customer.getProperty("lastName")+ " " + customer.getProperty("phoneNumber") +",");
 
 
                 }catch (Exception e){
@@ -51,5 +56,9 @@ public class ManageTripsServlet extends TripServlet {
             }
             count++;
         }
+        req.setAttribute("responseJson", new Gson().toJson(myTrips));
+        try {
+            req.getRequestDispatcher("ViewMyCurrentTrips.jsp").forward(req, resp);
+        } catch (Exception e) {e.printStackTrace();}
     }
 }

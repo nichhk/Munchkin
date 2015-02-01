@@ -1,8 +1,6 @@
 import com.google.appengine.api.datastore.Entity;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 // IF ERRORS WITH TIME CHECK OUT THE CHEAP SOLUTION AT LINE 38
 
@@ -40,6 +38,7 @@ public class Trip {
         this.timeLeft = formatTimeLeft(timeLeftArray);
         this.eta = dateSetter.timeToDate(Long.parseLong(eta));
         this.lastOrder = dateSetter.timeToDate(Long.parseLong(lastOrder));
+        customer = "";
     }
 
 

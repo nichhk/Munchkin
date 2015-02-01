@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.text.DecimalFormat;
 import java.util.Date;
 
 /**
@@ -77,6 +78,11 @@ public class OrderServlet extends HttpServlet {
             System.out.println("trying to get the trip entity failed");
             e.printStackTrace();}
         datastore.put(order);
-        resp.sendRedirect("/deposit?depositAmt="+depositAmt);
+        req.setAttribute("depositAmt", new DecimalFormat("#.##").format(depositAmt));
+        req.setAttribute("email", LoginStatus.getUserEmail());
+        req.setAttribute("note", "Placing an order with Munchin");
+        try {
+            req.getRequestDispatcher("Deposit.jsp").forward(req, resp);
+        } catch (Exception e) {e.printStackTrace();}
     }
 }
