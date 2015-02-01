@@ -66,7 +66,7 @@ public class TripServlet extends HttpServlet {
             trip.setProperty("percentFee",req.getParameter("percentFee"));
         }
     }
-    private String getMilliTime(HttpServletRequest req, String property){
+    private Long getMilliTime(HttpServletRequest req, String property){
         String dateTerm = property +"Date";
         System.out.println("Printing date"+req.getParameter(dateTerm));
         String[] splitDate = req.getParameter(dateTerm).split("-");
@@ -80,7 +80,7 @@ public class TripServlet extends HttpServlet {
         timeElements[4]=Integer.parseInt(splitTime[1]);
 
         System.out.println(new DateToMilliseconds().timeToDate(new DateToMilliseconds().dateToTime(timeElements)));
-        return Long.toString(new DateToMilliseconds().dateToTime(timeElements));
+        return new DateToMilliseconds().dateToTime(timeElements);
     }
 
 }
