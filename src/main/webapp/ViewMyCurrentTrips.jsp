@@ -19,17 +19,21 @@
                     }
                     var myTripID = trip.time;
                     var textForm = $('<form role = "form" action = "send_sms" method="get">');
+
                     var formInput = $('<input type = "submit" value = "Text the Customers" id = "text">');
                     var hiddenText = $('<input type = "hidden" value = myTripID id = "id">');
                     textForm.append(formInput);
                     textForm.append(hiddenText);
 
+                    var timeRow = $('<div class = "row" id = "timeRow">');
+                    var timeLeft = $('<div class="col-sm-4" style = "color:red">').html(trip.timeLeft);
+                    var timeETA = $('<div class = "col-sm-4">').html(trip.eta);
+                    timeRow.append(timeLeft);
+                    timeRow.append(timeETA);
+
                     $('<div id = "toClick">').appendTo('#trips')
                             .append($('<span style = "font-size:160%; font-weight:bold">').html(trip.restaurant))
-                            .append($('<br>'))
-                            .append($('<span style = "color:red">').html(trip.timeLeft))
-                            .append($('<span>').html(trip.eta))
-                            .append($('<br>'))
+                            .append(timeRow)
                             .append($('<span>').html("Drop off location: " + trip.dropOffLocation))
                             .append($('<br>'))
                             .append($('<span>').html("Number of Customers: " + numCustomers))

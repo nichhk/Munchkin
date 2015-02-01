@@ -23,8 +23,8 @@ public class User {
         this.firstName = (String)user.getProperty("firstName");
         this.lastName = (String)user.getProperty("lastName");
         this.number = (String)user.getProperty("phoneNumber");
-        this.rating = Double.parseDouble((String)user.getProperty("rating"));
-        this.numReviews = Integer.parseInt((String)user.getProperty("numReviews"));
+        this.rating = (double)(long)user.getProperty("rating");
+        this.numReviews = (int)(long)user.getProperty("numReviews");
     }
 
     public User(String email, String firstName, String lastName, String number){

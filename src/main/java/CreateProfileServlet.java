@@ -74,7 +74,6 @@ public class CreateProfileServlet extends HttpServlet {
                 new ConfirmationEmail().sendWelcomeEmail(req.getParameter("firstName"), email);
                 req.setAttribute("Error",null);
         return true;
-
     }
     private boolean checkValidEmail(String email) {
         String[] splitEmail = email.split("@");
