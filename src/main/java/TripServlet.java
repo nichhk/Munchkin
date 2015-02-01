@@ -30,11 +30,11 @@ public class TripServlet extends HttpServlet {
 
     @Override
     public void doPost(HttpServletRequest req, HttpServletResponse resp){
-        double currentTime = new Date().getTime();
+        long currentTime = new Date().getTime();
         UserService userService = UserServiceFactory.getUserService(); // Finds the user's email from OAuth
         User user = userService.getCurrentUser();
         String email = user.getEmail();
-        Entity trip = new Entity("trip", Double.toString(currentTime)); // Trips are Id'd by their timeStamp
+        Entity trip = new Entity("trip", Long.toString(currentTime)); // Trips are Id'd by their timeStamp
         trip.setProperty("user", email);
 
         trip.setProperty("dropOffLocation",req.getParameter("dropOffLocation"));

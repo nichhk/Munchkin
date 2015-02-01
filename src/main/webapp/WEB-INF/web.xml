@@ -1,89 +1,90 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
-    <servlet>
-        <servlet-name>createProfile</servlet-name>
-        <servlet-class>CreateProfileServlet</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>deposit</servlet-name>
-        <servlet-class>DepositServlet</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>home</servlet-name>
-        <servlet-class>HomeServlet</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>order</servlet-name>
-        <servlet-class>OrderServlet</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>rating</servlet-name>
-        <servlet-class>RatingServlet</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>receiveSMS</servlet-name>
-        <servlet-class>ReceiveSMSServlet</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>sendSMS</servlet-name>
-        <servlet-class>SendSMSServlet</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>transaction</servlet-name>
-        <servlet-class>TransactionServlet</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>trip</servlet-name>
-        <servlet-class>TripServlet</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>manageTrips</servlet-name>
-        <servlet-class>ManageTripsServlet</servlet-class>
-    </servlet>
+<servlet>
+    <servlet-name>createProfile</servlet-name>
+    <servlet-class>CreateProfileServlet</servlet-class>
+</servlet>
+<servlet>
+    <servlet-name>deposit</servlet-name>
+    <servlet-class>DepositServlet</servlet-class>
+</servlet>
+<servlet>
+    <servlet-name>home</servlet-name>
+    <servlet-class>HomeServlet</servlet-class>
+</servlet>
+<servlet>
+    <servlet-name>order</servlet-name>
+    <servlet-class>OrderServlet</servlet-class>
+</servlet>
+<servlet>
+    <servlet-name>rating</servlet-name>
+    <servlet-class>RatingServlet</servlet-class>
+</servlet>
+<servlet>
+    <servlet-name>receiveSMS</servlet-name>
+    <servlet-class>ReceiveSMSServlet</servlet-class>
+</servlet>
+<servlet>
+    <servlet-name>sendSMS</servlet-name>
+    <servlet-class>SendSMSServlet</servlet-class>
+</servlet>
+<servlet>
+    <servlet-name>transaction</servlet-name>
+    <servlet-class>TransactionServlet</servlet-class>
+</servlet>
+<servlet>
+    <servlet-name>trip</servlet-name>
+    <servlet-class>TripServlet</servlet-class>
+</servlet>
+<servlet>
+    <servlet-name>manageTrips</servlet-name>
+    <servlet-class>ManageTripsServlet</servlet-class>
+</servlet>
 
-    <servlet-mapping>
-        <servlet-name>createProfile</servlet-name>
-        <url-pattern>/create_profile</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>deposit</servlet-name>
-        <url-pattern>/deposit</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>home</servlet-name>
-        <url-pattern>/</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>order</servlet-name>
-        <url-pattern>/order</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>rating</servlet-name>
-        <url-pattern>/rating</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>receiveSMS</servlet-name>
-        <url-pattern>/receive_sms</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>sendSMS</servlet-name>
-        <url-pattern>/send_sms</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>transaction</servlet-name>
-        <url-pattern>/transaction</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>trip</servlet-name>
-        <url-pattern>/trip</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>manageTrips</servlet-name>
-        <url-pattern>/trip_manager</url-pattern>
-    </servlet-mapping>
-    
-    <welcome-file-list>
-        <welcome-file>home</welcome-file>
-    </welcome-file-list>
+
+<servlet-mapping>
+    <servlet-name>createProfile</servlet-name>
+    <url-pattern>/create_profile</url-pattern>
+</servlet-mapping>
+<servlet-mapping>
+    <servlet-name>deposit</servlet-name>
+    <url-pattern>/deposit</url-pattern>
+</servlet-mapping>
+<servlet-mapping>
+    <servlet-name>home</servlet-name>
+    <url-pattern>/</url-pattern>
+</servlet-mapping>
+<servlet-mapping>
+    <servlet-name>order</servlet-name>
+    <url-pattern>/order</url-pattern>
+</servlet-mapping>
+<servlet-mapping>
+    <servlet-name>rating</servlet-name>
+    <url-pattern>/rating</url-pattern>
+</servlet-mapping>
+<servlet-mapping>
+    <servlet-name>receiveSMS</servlet-name>
+    <url-pattern>/sms</url-pattern>
+</servlet-mapping>
+<servlet-mapping>
+    <servlet-name>sendSMS</servlet-name>
+    <url-pattern>/send_sms</url-pattern>
+</servlet-mapping>
+<servlet-mapping>
+    <servlet-name>transaction</servlet-name>
+    <url-pattern>/transaction</url-pattern>
+</servlet-mapping>
+<servlet-mapping>
+    <servlet-name>trip</servlet-name>
+    <url-pattern>/trip</url-pattern>
+</servlet-mapping>
+<servlet-mapping>
+    <servlet-name>manageTrips</servlet-name>
+    <url-pattern>/trip_manager</url-pattern>
+</servlet-mapping>
+
+<welcome-file-list>
+    <welcome-file>home</welcome-file>
+</welcome-file-list>
 
 </web-app>

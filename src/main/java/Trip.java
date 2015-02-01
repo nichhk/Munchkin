@@ -19,12 +19,13 @@ public class Trip {
     String timeLeft;
     String phoneNumber;
     String dropOffLocation;
-    String time;
-    List<String> customer = new ArrayList<String>();
-    List<String> cusNumbers = new ArrayList<String>();
+    long time;
+    String customer;
+
     String rating;
     public Trip(Entity trip){
-        this.time = trip.getKey().getName();
+        System.out.println("His name is"+trip.getKey().getName());
+        this.time = Long.parseLong((String)trip.getKey().getName());
         System.out.println("the id is " + time);
         this.dropOffLocation = (String)trip.getProperty("dropOffLocation");
         this.eta = (String)trip.getProperty("eta");
@@ -79,9 +80,8 @@ public class Trip {
             return timeLeftArray[0] +" hours, "+ timeLeftArray[1]+" minutes";
         }
     }
-    public void addCustomer(String cus, String num){
-        customer.add(cus);
-        cusNumbers.add(num);
+    public void addCustomer(String toAdd){
+        customer += toAdd;
     }
     public void addRating(int rating){
         this.rating = Integer.toString(rating);
