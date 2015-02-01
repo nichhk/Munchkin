@@ -36,6 +36,10 @@
         <servlet-name>trip</servlet-name>
         <servlet-class>TripServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>manageTrips</servlet-name>
+        <servlet-class>ManageTripsServlet</servlet-class>
+    </servlet>
 
     <servlet-mapping>
         <servlet-name>createProfile</servlet-name>
@@ -72,6 +76,10 @@
     <servlet-mapping>
         <servlet-name>trip</servlet-name>
         <url-pattern>/trip</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>manageTrips</servlet-name>
+        <url-pattern>/trip_manager</url-pattern>
     </servlet-mapping>
     
     <welcome-file-list>

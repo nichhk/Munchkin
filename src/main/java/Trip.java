@@ -1,4 +1,6 @@
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 // IF ERRORS WITH TIME CHECK OUT THE CHEAP SOLUTION AT LINE 38
 
@@ -16,6 +18,10 @@ public class Trip {
     String phoneNumber;
     String dropOffLocation;
     String id;
+    List<String> customer = new ArrayList<String>();
+    List<String> cusNumbers = new ArrayList<String>();
+    String rating;
+
     public Trip(String userName, String eta, String lastOrder, String restaurant,
                 String flat, String percentage, String maxOrder, String phoneNumber, String dropOffLocation, String id){
         this.id = id;
@@ -49,6 +55,13 @@ public class Trip {
         else{
             return timeLeftArray[0] +" hours, "+ timeLeftArray[1]+" minutes";
         }
+    }
+    public void addCustomer(String cus, String num){
+        customer.add(cus);
+        cusNumbers.add(num);
+    }
+    public void addRating(int rating){
+        this.rating = Integer.toString(rating);
     }
 
 

@@ -45,6 +45,7 @@ public class HomeServlet extends HttpServlet {
             PreparedQuery pq = datastore.prepare(q);
             ArrayList<Trip> trips = new ArrayList<Trip>();
             System.out.println("About to look at pq");
+            int count = 0;
             for (Entity trip : pq.asIterable()){
                 System.out.println("At least one");
                 trips.add(new Trip(new User((String)trip.getProperty("user")).getName(),
@@ -57,7 +58,11 @@ public class HomeServlet extends HttpServlet {
                         new User((String)trip.getProperty("user")).number,
                         (String)trip.getProperty("dropOffLocation"),
                         (String)trip.getKey().getName()));
+                trips.get(count).addRating(Integer.parseInt(new User((String)trip.getProperty("user")).rating));
+                count++;
+
             }
+
             System.out.println("Done");
             req.setAttribute("trips", new Gson().toJson(trips));
             try{
