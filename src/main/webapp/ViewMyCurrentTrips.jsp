@@ -21,7 +21,9 @@
                     var textForm = $('<form role = "form" action = "send_sms" method="get">');
 
                     var formInput = $('<input type = "submit" value = "Text the Customers" id = "text">');
-                    var hiddenText = $('<input type = "hidden" value = myTripID id = "id">');
+                    var thisString = "<input type = \"hidden\" id = \"id\" name = \"id\" value=\""+ myTripID+"\" >";
+                    var hiddenText = $(thisString);
+                    //$("#id").val(myTripID);
                     textForm.append(formInput);
                     textForm.append(hiddenText);
 
