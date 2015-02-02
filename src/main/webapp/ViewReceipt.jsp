@@ -9,18 +9,17 @@
                 var i = 0;
                 var totalPrice = 0;
                 console.log(${responseJson});
-                $.each( ${responseJson}, function(index, order) {
-                    if (i = 0) {
+                var data = ${responseJson};
+
                         var nameRow = $('<div class = "row">');
-                        var theName = $('<div style = "font-size:160%; font-weight:bold">').html(order.customer);
+                        var theName = $('<div style = "font-size:160%; font-weight:bold">').html(${name});
                         nameRow.append(theName);
                         theForm.append(nameRow);
 
                         var numberRow = $('<div class = "row">');
-                        var theNumber = $('<div style = "font-size:130%; font-weight:bold">').html(order.number);
+                        var theNumber = $('<div style = "font-size:130%; font-weight:bold">').html(${number});
                         numberRow.append(theNumber);
                         theForm.append(numberRow);
-
                         var keyStrings = $('<div class> = "row"');
                         var theItem = $('<div class = "col-sm-3">').html("Item");
                         var theMax = $('<div class = "col-sm-3">').html("Max");
@@ -29,9 +28,12 @@
                         keyStrings.append(theMax);
                         keyStrings.append(actual);
                         theForm.append(keyStrings);
-                    }
-                    if (i > 0) {
-                        var data = order.item;
+
+                        for(var i =0;i<data.primaryItems.length;i++) {
+
+
+                        }
+                        //var data = order.item;
                         var totalRow = $('<div class = "row">');
                         var pItem = $('<div class = "col-sm-3" style = "font-weight:bold">').html(data[0]);
                         var pMaxPrice = $('<div class = "col-sm-3">').html(data[1]);
@@ -63,7 +65,7 @@
                             secondRow.append(altCheckPrice);
                             theForm.append(secondRow);
                         }
-                    }
+
                 });
                 $('<p>').html("Subtotal: $ <span id='subtotal'>0.00</span>").appendTo(theForm);
                 $('<p>').html("Total, incl. fee and tax: $ <span id='total'>0.00</span>").appendTo(theForm);

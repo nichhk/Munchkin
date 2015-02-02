@@ -21,6 +21,8 @@
                     var formInput = $('<input type = "submit" value = "Text the Customers" id = "text">');
                     var thisString = "<input type = \"hidden\" id = \"id\" name = \"id\" value=\""+ TripID+"\" >";
                     var hiddenText = $(thisString);
+                    //$("#id").val(myTripID);
+                    textForm.append(formInput);
                     textForm.append(hiddenText);
 
                     var timeRow = $('<div class = "row" id = "timeRow">');

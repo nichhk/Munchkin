@@ -44,8 +44,10 @@ public class Order {
             System.out.println("ordering"+item.getProperty("foodItem"));
         }
     }
+    /*
     public Order(Entity order, String name, String number){
         Query q1 = new Query("item");
+        order.getProperty("trip");
         Query.Filter thisOrder = new Query.FilterPredicate("order",Query.FilterOperator.EQUAL, order.getProperty("trip"));
         System.out.println("I am "+  order.getProperty("trip"));
         PreparedQuery pq1 = datastore.prepare(q1.setFilter(thisOrder));
@@ -75,5 +77,6 @@ public class Order {
         this.number = number;
 
     }
+    */
 
 }

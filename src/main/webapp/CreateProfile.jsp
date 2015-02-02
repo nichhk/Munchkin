@@ -33,7 +33,7 @@
                             </div>
                             <div class="form_group">
                                 <label for = "phoneNumber"> Phone Number:</label>
-                                <input type = "phoneNumber" class = "form-control" id = "phoneNumber" pattern="(?:\(\d{3}\)|\d{3})[- ]?\d{3}[- ]?\d{4}" placeholder="Enter Phone Number" required>
+                                <input type = "phoneNumber" class = "form-control" id = "phoneNumber" name = "phoneNumber" placeholder="Enter Phone Number" required>
                             </div>
                             <button type="submit" class="btn btn-default">Submit</button>
                         </form>

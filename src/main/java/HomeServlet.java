@@ -59,9 +59,7 @@ public class HomeServlet extends HttpServlet {
                 unique.add(Long.parseLong((String)order.getProperty("trip")));
 
             }
-            for(long u:unique){
-                System.out.println("Should not be"+u);
-            }
+
             int count = 0;
             for (Entity trip : pq.asIterable()){
                 System.out.println("At least one");
