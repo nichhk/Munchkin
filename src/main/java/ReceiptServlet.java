@@ -12,10 +12,10 @@ public class ReceiptServlet extends HttpServlet {
     public void doGet(HttpServletRequest req, HttpServletResponse resp){
         DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
         String email = (String)req.getParameter("email");
-
+        System.out.println("tripId is"+(String)req.getParameter("tripId"));
         String trip = (String)req.getParameter("tripId");
-        Query q = new Query("trip")
-                ;
+        Query q = new Query("trip");
+
         Query q1 = new Query("order");
         Query.FilterPredicate emailFilter = new Query.FilterPredicate("email", Query.FilterOperator.EQUAL, email);
         Query.FilterPredicate tripFilter = new Query.FilterPredicate("time", Query.FilterOperator.EQUAL, Long.parseLong(trip));
