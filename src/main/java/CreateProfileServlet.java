@@ -38,12 +38,6 @@ public class CreateProfileServlet extends HttpServlet {
         else{
             req.setAttribute("Error","Please enter a valid @rice.edu email");
         }
-        try {
-            resp.sendRedirect("https://api.venmo.com/v1/oauth/authorize?client_id=2331&scope=make_payments%20access_profile");
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-
     }
     public void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 

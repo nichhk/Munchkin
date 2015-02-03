@@ -7,8 +7,6 @@ import java.util.Date;
 
 // IF ERRORS WITH TIME CHECK OUT THE CHEAP SOLUTION AT LINE 38
 
-
-
 public class Trip {
     String user;
     String eta;

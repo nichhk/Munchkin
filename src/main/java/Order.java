@@ -21,7 +21,7 @@ public class Order {
         Query.Filter thisOrder = new Query.FilterPredicate("order",Query.FilterOperator.EQUAL, order.getProperty("trip"));
         System.out.println("I am "+  order.getProperty("trip"));
         PreparedQuery pq1 = datastore.prepare(q1.setFilter(thisOrder));
-       // PreparedQuery pq1 = datastore.prepare(q1);
+        // PreparedQuery pq1 = datastore.prepare(q1);
         int count = 0;
         System.out.println("here i am");
         for(Entity item: pq1.asIterable()){

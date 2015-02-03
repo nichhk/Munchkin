@@ -45,8 +45,6 @@ public class HomeServlet extends HttpServlet {
             Query.FilterPredicate timeLeft = new Query.FilterPredicate("lastOrder",
                     Query.FilterOperator.GREATER_THAN, curTime-21600000);
 
-
-
             PreparedQuery pq = datastore.prepare(q.setFilter(timeLeft));
             ArrayList<Trip> trips = new ArrayList<Trip>();
             ArrayList<Long> unique = new ArrayList<Long>();
@@ -83,5 +81,4 @@ public class HomeServlet extends HttpServlet {
             } catch (Exception e) {e.printStackTrace();}
         }
     }
-
 }
