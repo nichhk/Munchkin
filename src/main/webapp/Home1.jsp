@@ -62,7 +62,7 @@
                     var joinTripRow = $('<div class = "row" id = "joinRow">');
                     var bufferSpace = $('<div class = "col-sm-6">').html("    ");
                     var joinButton = $('<div class = "col-sm-6">');
-                    var myButton = $('<a class="btn btn-primary" href="order?id='+trip.time+'">').html("Join trip");
+                    var myButton = $('<a class="btn btn-primary" href="order?id='+trip.time +'">').html("Join trip");
                     joinButton.append(myButton);
                     joinTripRow.append(joinButton);
 

@@ -65,7 +65,8 @@ public class CreateProfileServlet extends HttpServlet {
                 profile.setProperty("lastName", req.getParameter("lastName"));
                 profile.setProperty("college", req.getParameter("college"));
                 profile.setProperty("year", req.getParameter("year"));
-                profile.setProperty("phoneNumber", req.getParameter("phoneNumber"));
+                String phoneNumber = req.getParameter("phoneNumber").replaceAll("[^\\d.]", "");
+                profile.setProperty("phoneNumber", phoneNumber);
                 profile.setProperty("email",email);
                 profile.setProperty("rating", 0);
                 profile.setProperty("numReviews", 0);
@@ -90,9 +91,7 @@ public class CreateProfileServlet extends HttpServlet {
     private boolean checkUniqueEmail(String email){
         Query q = new Query("profile");
         Filter uniqueEmail = new FilterPredicate("email", FilterOperator.EQUAL, email);
-
         boolean isUnique = true; // Checks it the email has already been placed in the dataStore
-
         PreparedQuery pq = datastore.prepare(q.setFilter(uniqueEmail));
         for (Entity e : pq.asIterable()) {
             isUnique = false;

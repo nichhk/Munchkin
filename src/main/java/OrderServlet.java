@@ -1,7 +1,4 @@
-import com.google.appengine.api.datastore.DatastoreService;
-import com.google.appengine.api.datastore.DatastoreServiceFactory;
-import com.google.appengine.api.datastore.Entity;
-import com.google.appengine.api.datastore.KeyFactory;
+import com.google.appengine.api.datastore.*;
 import com.google.appengine.api.users.UserService;
 import com.google.appengine.api.users.UserServiceFactory;
 
@@ -16,8 +13,8 @@ import java.util.Date;
  * Created by compsci on 1/31/15.
  */
 public class OrderServlet extends HttpServlet {
-    private static DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
-
+    private QueryManager queryManager = new QueryManager();
+    private static DatastoreService dataStore= DatastoreServiceFactory.getDatastoreService();
     @Override
     public void doGet(HttpServletRequest req, HttpServletResponse resp){
         req.setAttribute("page", "null");
@@ -35,9 +32,11 @@ public class OrderServlet extends HttpServlet {
         String email = user.getEmail();
         int numItems = Integer.parseInt(req.getParameter("numItems"));
         System.out.println("okay, now we're tryng to make an order element");
-        Entity order = new Entity("order", new Date().getTime());
-        order.setProperty("trip",req.getParameter("tripId"));
-        order.setProperty("email", LoginStatus.getUserEmail());
+
+        Entity trip = queryManager.query("trip","time",Long.parseLong((String)req.getParameter("tripId")),1, Query.FilterOperator.EQUAL).get(0);
+        Entity order = new Entity("order");
+        order.setProperty("trip",KeyFactory.keyToString(trip.getKey()));
+        order.setProperty("email", email);
         double depositAmt = 0.0;
         System.out.println("okay, now I'm adding each item");
         for (int i = 1; i <= numItems; i++){
@@ -46,14 +45,14 @@ public class OrderServlet extends HttpServlet {
             item.setProperty("foodItem", req.getParameter("foodItem" + i));
             item.setProperty("priceMax", req.getParameter("priceMax" + i));
             item.setProperty("comments", req.getParameter("comments" + i));
-            datastore.put(item);
+            dataStore.put(item);
             System.out.println("just put an item in the array");
             if (req.getParameter("altFoodItem"+i) != null){
                 Entity alt = new Entity("alt", item.getKey());
                 alt.setProperty("foodItem", req.getParameter("altFoodItem" + i));
                 alt.setProperty("priceMax", req.getParameter("altPriceMax" + i));
                 alt.setProperty("comments", req.getParameter("altComments" + i));
-                datastore.put(alt);
+                dataStore.put(alt);
             }
             System.out.println("price max is " + req.getParameter("priceMax"+i));
             System.out.println("alt price max is " + req.getParameter("altPriceMax"+i));
@@ -67,7 +66,7 @@ public class OrderServlet extends HttpServlet {
         }
         try {
             System.out.println("Okay, trying to get the trip entity for this order");
-            Entity trip = datastore.get(KeyFactory.createKey("trip", req.getParameter("tripId")));
+
             //max tax rate for local and state sales tax is 8.25%
             System.out.println("got the trip entity");
             depositAmt *= (Double.parseDouble((String)trip.getProperty("percentFee")) + 8.25 + 100.0) / 100.0;
@@ -75,7 +74,7 @@ public class OrderServlet extends HttpServlet {
         } catch (Exception e) {
             System.out.println("trying to get the trip entity failed");
             e.printStackTrace();}
-        datastore.put(order);
+        dataStore.put(order);
         req.setAttribute("depositAmt", new DecimalFormat("#.##").format(depositAmt));
         req.setAttribute("email", LoginStatus.getUserEmail());
         req.setAttribute("note", "Placing an order with Munchin");
