@@ -15,7 +15,7 @@ public class ManageTripsServlet extends TripServlet {
     private static DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
 
     public void doGet(HttpServletRequest req, HttpServletResponse resp){
-        req.setAttribute("page", "my_trips");
+        req.setAttribute("page", "trip_manager");
         req.setAttribute("isApproved", "1");
         req.setAttribute("log", LoginStatus.getLogOutUrl("/"));
         List<Trip> myTrips = new ArrayList<Trip>();
@@ -47,9 +47,8 @@ public class ManageTripsServlet extends TripServlet {
                 System.out.println(cusEmail);
                 try {
                     Entity customer = datastore.get(KeyFactory.createKey("profile",cusEmail));
-                    myTrips.get(count).addCustomer(customer.getProperty("firstName") + " " +customer.getProperty("lastName")+ " " + customer.getProperty("phoneNumber") +",");
-
-
+                    myTrips.get(count).addCustomer(customer.getProperty("firstName") + " " +
+                            customer.getProperty("lastName")+ " " + customer.getProperty("email") +",");
                 }catch (Exception e){
                     e.printStackTrace();
                 }

@@ -6,6 +6,13 @@
 
 <t:template isApproved="${isApproved}" log="${log}" page="${page}">
     <jsp:attribute name="scripts">
+        <script>
+            $(function(){
+                var me = "https://venmo.com/nicholas-kwon?txn=pay&amount="+${depositAmt}
+                $("#id").val(me);
+            });
+
+        </script>
     </jsp:attribute>
     <jsp:attribute name="content">
         <div class="site-wrapper-inner">
@@ -17,19 +24,10 @@
                     <div class="row">
                         <div class="col-md-12">
                             <p>The max amount of money you're willing to pay, including the fees
-                                and tax, is ${depositAmt}. Clicking the button below will take you
+                                and tax, is $${depositAmt}. Clicking the button below will take you
                                 to Venmo to place your order.
                             </p>
-                            <form action="https://api.venmo.com/v1/payments" method="POST">
-                                <div style="display:none">
-                                    <input type="text" name="access_token" id="access_token"
-                                           value="4MX7yxwTu97RjLktV4TvkHmcRNawPwsG">
-                                    <input type="text" name="email" id="email" value="${email}">
-                                    <input type="number" name="amount" id="amount" value="${depositAmt}">
-                                    <input type="text" name="note" id="note" value="${note}">
-                                </div>
-                                <button type="submit" class="btn btn-primary">Pay with Venmo</button>
-                            </form>
+                                <a class="btn btn-primary" id="id" href="https://venmo.com/nicholas-kwon?txn=pay&amount=${depositAmt}">Pay with Venmo</a>
                         </div>
                     </div>
                 </div>

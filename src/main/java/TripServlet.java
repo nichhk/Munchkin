@@ -42,7 +42,6 @@ public class TripServlet extends HttpServlet {
         System.out.println("restaurant is"+req.getParameter("restaurant"));
         trip.setProperty("restaurant", req.getParameter("restaurant"));
         trip.setProperty("maxOrder", req.getParameter("maxOrder"));
-
         findFee(trip, req);
         trip.setProperty("eta",getMilliTime(req,"eta"));
         trip.setProperty("lastOrder",getMilliTime(req,"lastOrder"));
@@ -54,20 +53,20 @@ public class TripServlet extends HttpServlet {
         }
     }
     private void findFee(Entity trip, HttpServletRequest req){
-        if(req.getParameter("flat")==null){
-           trip.setProperty("flatFee","0");
+        if(req.getParameter("flat")==null || req.getParameter("flatFee")==null){
+           trip.setProperty("flatFee", "0");
         }
         else{
             trip.setProperty("flatFee",req.getParameter("flatFee"));
         }
-        if(req.getParameter("percentage")==null){
+        if((req.getParameter("percentage")==null)||req.getParameter("percentFee")==null){
             trip.setProperty("percentFee","0");
         }
         else{
             trip.setProperty("percentFee",req.getParameter("percentFee"));
         }
     }
-    private String getMilliTime(HttpServletRequest req, String property){
+    private Long getMilliTime(HttpServletRequest req, String property){
         String dateTerm = property +"Date";
         System.out.println("Printing date"+req.getParameter(dateTerm));
         String[] splitDate = req.getParameter(dateTerm).split("-");
@@ -79,14 +78,9 @@ public class TripServlet extends HttpServlet {
         String[] splitTime = req.getParameter(timeTerm).split(":");
         timeElements[3]=Integer.parseInt(splitTime[0]);
         timeElements[4]=Integer.parseInt(splitTime[1]);
-        /*
 
-        for(int j:timeElements){
-            System.out.println(j);
-        }
-        */
         System.out.println(new DateToMilliseconds().timeToDate(new DateToMilliseconds().dateToTime(timeElements)));
-        return Long.toString(new DateToMilliseconds().dateToTime(timeElements));
+        return new DateToMilliseconds().dateToTime(timeElements);
     }
 
 }

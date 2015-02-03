@@ -67,13 +67,13 @@ public class CreateProfileServlet extends HttpServlet {
                 profile.setProperty("year", req.getParameter("year"));
                 profile.setProperty("phoneNumber", req.getParameter("phoneNumber"));
                 profile.setProperty("email",email);
-                profile.setProperty("rating", -1); // Default rating is -1
+                profile.setProperty("rating", 0);
+                profile.setProperty("numReviews", 0);
                 profile.setProperty("numTrips", 0); // If numTrips == 0, then we are fine
                 datastore.put(profile);
                 new ConfirmationEmail().sendWelcomeEmail(req.getParameter("firstName"), email);
                 req.setAttribute("Error",null);
         return true;
-
     }
     private boolean checkValidEmail(String email) {
         String[] splitEmail = email.split("@");

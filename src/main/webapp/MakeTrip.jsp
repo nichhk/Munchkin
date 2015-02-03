@@ -51,7 +51,6 @@
 
     <jsp:attribute name="content">
         <div class="site-wrapper-inner">
-            <div class="site-wrapper-inner">
                 <div class="cover-container">
                     <!--
                     thanks to : http://bootsnipp.com/snippets/featured/bootstrap-3x-contact-form-layout
@@ -103,10 +102,9 @@
                                     </div>
                                 </form>
                             </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
     </jsp:attribute>
 </t:template>

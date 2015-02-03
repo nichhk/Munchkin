@@ -15,9 +15,11 @@
                 -->
                 <div id="content" class="inner cover" style="text-align: left">
                     <div class="row">
-                        <div class="col-md-12">
+                        <div class="col-md-12 text-center">
                             <a class="btn btn-primary" href="${logIn}">Log in</a>
-                            <a class="btn btn-primary" href="${createProf}">Create an account</a>
+                            <br>
+
+                            <a class="btn btn-primary" href="${createProf}" style="margin-top: 10px">Create an account</a>
                         </div>
                     </div>
                 </div>
