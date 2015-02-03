@@ -34,14 +34,14 @@ public class TripServlet extends HttpServlet {
         UserService userService = UserServiceFactory.getUserService(); // Finds the user's email from OAuth
         User user = userService.getCurrentUser();
         String email = user.getEmail();
-        Entity trip = new Entity("trip", Long.toString(currentTime)); // Trips are Id'd by their timeStamp
+        Entity trip = new Entity("trip"); // Trips are Id'd by their timeStamp
         trip.setProperty("user", email);
         trip.setProperty("time", currentTime);
         trip.setProperty("dropOffLocation",req.getParameter("dropOffLocation"));
         System.out.println("maxOrder is"+req.getParameter("maxOrder"));
         System.out.println("restaurant is"+req.getParameter("restaurant"));
         trip.setProperty("restaurant", req.getParameter("restaurant"));
-        trip.setProperty("maxOrder", req.getParameter("maxOrder"));
+        trip.setProperty("maxOrder", Long.parseLong(req.getParameter("maxOrder")));
         findFee(trip, req);
         trip.setProperty("eta",getMilliTime(req,"eta"));
         trip.setProperty("lastOrder",getMilliTime(req,"lastOrder"));

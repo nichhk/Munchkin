@@ -16,18 +16,18 @@ public class Trip {
     String restaurant;
     double flat;
     double percentage;
-    int maxOrder;
+    long maxOrder;
     String timeLeft;
     String phoneNumber;
     String dropOffLocation;
     long time;
-    String customer;
-
+    String customer="";
+    String key;
     String rating;
     public Trip(Entity trip){
-        System.out.println("His name is"+trip.getKey().getName());
-        this.time = Long.parseLong((String) trip.getKey().getName());
-        System.out.println("the id is " + time);
+        this.key = KeyFactory.keyToString(trip.getKey());
+
+        this.time = (long)trip.getProperty("time");
         this.dropOffLocation = (String)trip.getProperty("dropOffLocation");
         this.eta = Long.toString((long)trip.getProperty("eta"));
         this.lastOrder = Long.toString((long)trip.getProperty("lastOrder"));
@@ -38,7 +38,7 @@ public class Trip {
         try {
             this.percentage = Double.parseDouble((String) trip.getProperty("percentFee"));
         } catch (Exception e){this.percentage = 0;}
-        this.maxOrder = Integer.parseInt((String)trip.getProperty("maxOrder"));
+        this.maxOrder = (long)trip.getProperty("maxOrder");
         this.phoneNumber = new User((String)trip.getProperty("user")).number;
         DateToMilliseconds dateSetter = new DateToMilliseconds();
         long[] timeLeftArray = dateSetter.milliToTimeString(Long.parseLong(lastOrder) - new Date().getTime()+21600000);
@@ -63,6 +63,7 @@ public class Trip {
         }
     }
     public void addCustomer(String toAdd){
+        System.out.println("customer is"+customer);
         customer += toAdd;
     }
     public void addRating(int rating){

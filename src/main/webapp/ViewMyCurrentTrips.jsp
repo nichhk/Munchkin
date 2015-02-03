@@ -13,13 +13,13 @@
                     for (var i = 0; i < numCustomers; i++) {
                         var customer = eachCustomer[i].split(" ");
                         var customerName = customer[0] + " " + customer[1];
-                        var newSpan = $('<p>').append($('<a href="/receipt?email=' + customer[2] + '&tripId=' + trip.time + '">').html(customerName));
+                        var newSpan = $('<p>').append($('<a href="/receipt?email=' + customer[2] + '&tripId=' + trip.key + '">').html(customerName));
                         allCustomers.append(newSpan);
                     }
-                    var TripID = trip.time;
+
                     var textForm = $('<form role = "form" action = "send_sms" method="get">');
                     var formInput = $('<input type = "submit" value = "Text the Customers" id = "text">');
-                    var thisString = "<input type = \"hidden\" id = \"id\" name = \"id\" value=\""+ TripID+"\" >";
+                    var thisString = "<input type = \"hidden\" id = \"id\" name = \"id\" value=\""+ trip.key+"\" >";
                     var hiddenText = $(thisString);
                     //$("#id").val(myTripID);
                     textForm.append(formInput);
