@@ -89,6 +89,10 @@
                 <!--
                 thanks to : http://bootsnipp.com/snippets/featured/bootstrap-3x-contact-form-layout
                 -->
+                <div class="page-header">
+                <h1>Welcome to Munchin! The easiest and most convenient way to get a quick bite to eat!</h1>
+                </div>
+                <p>Log in to start or join a trip or create a new account</p>
                 <div id="content" class="inner cover" style="text-align: left">
                     <div class="row">
                         <div class="col-md-12">
