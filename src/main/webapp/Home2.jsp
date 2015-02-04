@@ -25,7 +25,5 @@
                 </div>
             </div>
         </div>
-
     </jsp:attribute>
-
 </t:template>

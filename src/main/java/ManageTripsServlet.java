@@ -26,11 +26,10 @@ public class ManageTripsServlet extends TripServlet {
         ArrayList<Trip>returnTrips = new ArrayList<Trip>();
         for(Entity aTrip: myTrips){
             returnTrips.add(new Trip(aTrip));
-            long numResults =(long)aTrip.getProperty("maxOrder");
-            List<Entity>tripOrders = queryManager.query("order","trip", KeyFactory.keyToString(aTrip.getKey()), (int)numResults,Query.FilterOperator.EQUAL) ;
-            for(Entity order: tripOrders){
+            Query orders = new Query("order").setAncestor(aTrip.getKey());
+            PreparedQuery pq = datastore.prepare(orders);
+            for(Entity order: pq.asIterable()){
                 String cusEmail = (String)order.getProperty("email");
-
                 try {
                     Entity customer = datastore.get(KeyFactory.createKey("profile",cusEmail));
                     returnTrips.get(count).addCustomer(customer.getProperty("firstName") + " " +

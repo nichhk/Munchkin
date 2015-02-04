@@ -7,16 +7,15 @@
         <script>
             $(function() {
                     $.each(${responseJson}, function (index, trip) {
-
-                        var eachCustomer = trip.customer.split(",");
-                        var numCustomers = eachCustomer.length;
-                        var allCustomers = $('<div id = "expandable">');
-                        for (var i = 0; i < numCustomers; i++) {
-                            var customer = eachCustomer[i].split(" ");
-                            var customerName = customer[0] + " " + customer[1];
-                            var newSpan = $('<p>').append($('<a href="/receipt?email=' + customer[2] + '&tripId=' + trip.key + '">').html(customerName));
-                            allCustomers.append(newSpan);
-                        }
+                            var eachCustomer = trip.customer.split(",");
+                            var numCustomers = eachCustomer.length;
+                            var allCustomers = $('<div id = "expandable">');
+                            for (var i = 0; i < numCustomers; i++) {
+                                var customer = eachCustomer[i].split(" ");
+                                var customerName = customer[0] + " " + customer[1];
+                                var newSpan = $('<p>').append($('<a href="/receipt?email=' + customer[2] + '&tripId=' + trip.key + '">').html(customerName));
+                                allCustomers.append(newSpan);
+                            }
 
                         var textForm = $('<form role = "form" action = "send_sms" method="get">');
                         var formInput = $('<input type = "submit" value = "Text the Customers" id = "text">');
@@ -33,7 +32,6 @@
 
                         timeRow.append(timeETA);
 
-
                         $('<div id = "toClick">').appendTo('#trips')
                                 .append($('<span style = "font-size:160%; font-weight:bold">').html(trip.restaurant))
                                 .append(timeRow)
@@ -45,7 +43,7 @@
                                 .append($('<br>'))
                                 .append(allCustomers.hide())
                                 .addClass('trip')
-                                .addClass('well well-lg')
+                                .addClass('well well-lg');
                     });
             });
 

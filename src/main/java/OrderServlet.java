@@ -70,7 +70,6 @@ public class OrderServlet extends HttpServlet {
         order.setProperty("items",items);
         try {
             System.out.println("Okay, trying to get the trip entity for this order");
-
             //max tax rate for local and state sales tax is 8.25%
             System.out.println("got the trip entity");
             depositAmt *= (Double.parseDouble((String)trip.getProperty("percentFee")) + 8.25 + 100.0) / 100.0;
