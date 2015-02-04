@@ -32,7 +32,6 @@ public class OrderServlet extends HttpServlet {
         String email = user.getEmail();
         int numItems = Integer.parseInt(req.getParameter("numItems"));
         System.out.println("okay, now we're tryng to make an order element");
-
         Entity trip = queryManager.query("trip","time",Long.parseLong((String)req.getParameter("tripId")),1, Query.FilterOperator.EQUAL).get(0);
         Entity order = new Entity("order", trip.getKey());
         order.setProperty("email", email);
