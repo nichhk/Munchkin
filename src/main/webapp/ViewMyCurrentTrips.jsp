@@ -8,7 +8,7 @@
             $(function() {
                     $.each(${responseJson}, function (index, trip) {
                             var eachCustomer = trip.customer.split(",");
-                            var numCustomers = eachCustomer.length;
+                            var numCustomers = eachCustomer.length - 1;
                             var allCustomers = $('<div id = "expandable">');
                             for (var i = 0; i < numCustomers; i++) {
                                 var customer = eachCustomer[i].split(" ");
@@ -41,9 +41,9 @@
                                 .append($('<br>'))
                                 .append(textForm)
                                 .append($('<br>'))
-                                .append(allCustomers.hide())
                                 .addClass('trip')
                                 .addClass('well well-lg');
+
                     });
             });
 

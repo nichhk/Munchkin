@@ -5,8 +5,8 @@
     <jsp:attribute name="scripts">
         <script>
         $(function() {
-            $("#percentFee").prop('disabled', true); //http://stackoverflow.com/questions/6982692/html5-input-type-date-default-value-to-today
-            $("#flatFee").prop('disabled', true);
+            //$("#percentFee").prop('disabled', true); //http://stackoverflow.com/questions/6982692/html5-input-type-date-default-value-to-today
+            //$("#flatFee").prop('disabled', true);
             var now = new Date();
             var month = (now.getMonth() + 1);
             var day = now.getDate();
@@ -18,6 +18,7 @@
             $("#etaDate").val(today);
             $("#lastOrderDate").val(today);
         });
+        /*
         $(function () {
 
             $('#percent').click(function () {
@@ -44,7 +45,7 @@
                 }
             });
         });
-
+        */
         </script>
 
     </jsp:attribute>
@@ -79,13 +80,10 @@
                                     <div class ="form-group">
 
                                         <div class="checkbox">
-                                            <label for ="percent"><input type="checkbox" id = "percent" name = "percentage">Percentage</label>
 
-                                            <label for ="flat"><input type="checkbox" id = "flat" name = "flat">Flat Fee</label>
+                                            <input type="number" class="form-control" id="percentFee" name = "percentFee" type ="number" step="any" min="0" placeholder="10% -> ex: 10">
 
-                                            <input type="number" class="form-control" id="percentFee" name = "percentFee" type ="number" step="any" min="0" placeholder="10% -> ex: 10" required>
-
-                                            <input type="number" class="form-control" id="flatFee" name = "flatFee" type ="number" step="any" min="0" placeholder="$3.50 -> ex: 3.5" required>
+                                            <input type="number" class="form-control" id="flatFee" name = "flatFee" type ="number" step="any" min="0" placeholder="$3.50 -> ex: 3.5">
                                         </div>
                                     </div>
                                     <div class = "form-group">

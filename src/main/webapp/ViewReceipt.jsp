@@ -65,14 +65,14 @@
                             theForm.append(secondRow);
                         }
 
-                });
                 $('<p>').html("Subtotal: $ <span id='subtotal'>0.00</span>").appendTo(theForm);
                 $('<p>').html("Total, incl. fee and tax: $ <span id='total'>0.00</span>").appendTo(theForm);
                 $('<button type="submit" class="btn btn-primary">').appendTo(theForm);
                 theForm.appendTo($('#orders'));
             });
 
-        $(function() {
+
+            $(function() {
             var sum = 0;
             $('.money').on('change', function() {
                 sum = 0;
