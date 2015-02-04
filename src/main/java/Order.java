@@ -19,19 +19,27 @@ public class Order {
     public class Item{
         public String foodItem;
         public String priceMax;
-        public String comments;
+        public String comments = "";
+        public boolean hasAlt;
         public Item alt = null;
-        private boolean isAlt;
+
 
         public Item(EmbeddedEntity item, boolean isAlt) {
-            this.isAlt = isAlt;
             this.foodItem = (String) item.getProperty("foodItem");
             this.priceMax = (String) item.getProperty("priceMax");
-            this.comments = (String) item.getProperty("comments");
+            if(item.getProperty("comments")!= null){
+                this.comments = (String) item.getProperty("comments");
+            }
+
             if (!isAlt) {
                 if (item.getProperty("alt") != null) {
                     alt = new Item((EmbeddedEntity) item.getProperty("alt"), true);
+                    hasAlt = true;
+                }else{
+                   hasAlt = false;
                 }
+
+
             }
         }
 

@@ -45,14 +45,12 @@ public class OrderServlet extends HttpServlet {
             item.setProperty("comments", req.getParameter("comments" + i));
 
             if (req.getParameter("altFoodItem"+i) != null){
+                System.out.println("Adding an alternate item a foodItem");
                 EmbeddedEntity alt = new EmbeddedEntity();
                 alt.setProperty("foodItem", req.getParameter("altFoodItem" + i));
                 alt.setProperty("priceMax", req.getParameter("altPriceMax" + i));
                 alt.setProperty("comments", req.getParameter("altComments" + i));
                 item.setProperty("alt",alt);
-            }
-            else{
-                item.setProperty("",null);
             }
             items.add(item);
             System.out.println("price max is " + req.getParameter("priceMax"+i));
