@@ -25,10 +25,10 @@
 
 
 
-                var food_name = $('<div class="form-group"> <label for="altFoodItem'+num+'">Name of food item</label><input type="text"  class="form-control" id="firstItem'+num+'alt" name="firstItem'+num+'alt" placeholder="Enter the food" required> </div>');
-                var price_max = $('<div class="form-group"> <label for="altPriceMax'+num+'">Maximum Price</label><input type="number" step="0.01" min="0" class="form-control" id="priceMax'+num+'alt" name="priceMax'+num+'alt"placeholder="Enter maximum price" required> </div>');
+                var food_name = $('<div class="form-group"> <label for="altFoodItem'+num+'">Name of food item</label><input type="text"  class="form-control" id="firstItem'+num+'alt" name="firstItem'+num+'alt" placeholder="Enter the food"> </div>');
+                var price_max = $('<div class="form-group"> <label for="altPriceMax'+num+'">Maximum Price</label><input type="number" step="0.01" min="0" class="form-control" id="priceMax'+num+'alt" name="priceMax'+num+'alt"placeholder="Enter maximum price"> </div>');
                 var comments = $('<div class="form-group"> <label for="altComments'+num+'">Additional Comments</label><input type="text" step="0.01" min="0" class="form-control" id="comments'+num+'alt" name="comments'+num+'alt"placeholder="Enter comments (i.e. no pickles, extra ketchup)"> </div>');
-                var newDiv = $("<div>").attr("id", "alt"+num)
+                var newDiv = $("<div class='alt'>").attr("id", "alt"+num)
                         .append($('<h3>').html("Alternate Food Item"))
                         .append(food_name)
                         .append(price_max)
@@ -36,9 +36,9 @@
                 newDiv.appendTo($('#item'+num));
             }
             else{
-                var food_name = $('<div class="form-group"> <label for="foodItem'+count+'">Name of food item</label><input type="text" class="form-control" id="firstItem'+count+'" name="firstItem'+count+'" placeholder="Enter the food" required> </div>');
+                var food_name = $('<div class="form-group"> <label for="foodItem'+count+'">Name of food item</label><input type="text" class="form-control" id="firstItem'+count+'" name="firstItem'+count+'" placeholder="Enter the food"> </div>');
 
-                var price_max = $('<div class="form-group"> <label for="priceMax'+count+'">Maximum Price</label><input type="number" step="0.01" min="0" class="form-control" id="priceMax'+count+'" name="priceMax'+count+'"placeholder="Enter maximum price" required> </div>');
+                var price_max = $('<div class="form-group"> <label for="priceMax'+count+'">Maximum Price</label><input type="number" step="0.01" min="0" class="form-control" id="priceMax'+count+'" name="priceMax'+count+'"placeholder="Enter maximum price"> </div>');
                 var comments = $('<div class="form-group"> <label for="comments'+count+'">Additional Comments</label><input type="text" class="form-control" id="comments'+count+'" name="comments'+count+'"placeholder="Enter comments (i.e. no pickles, extra ketchup)"> </div>');
                 var button = $('<button class="btn btn-default" name="item'+count+'" onclick="addNewFoodOrder(this, \'alt\')"><span class="glyphicon glyphicon-plus"></span> Alternate</button>');
 
@@ -54,27 +54,25 @@
                 count++;
             }
         }
-        var alternateFoodItems = $document.getElementsByTagName("div");
-        $.each( alternateFoodItems, function(index, alternateFoodItems){
-            if (alternateFoodItem.attr().indexOf("alt") >= 0)
-            {
-                if (alternateFoodItem.food_name != null && alternateFoodItem.price_min == null && alternateFoodItem.price_max == null)
-                {
-                    alert("An alternate food order requires you to fill out a food name, minimum price and maximum price. ");
-                    break;
+
+        $('#orderForm').on('submit', function(e) {
+            $.each($('.alt'), function (index, alternateFoodItems) {
+                if (alternateFoodItem.attr().indexOf("alt") >= 0) {
+                    if (alternateFoodItem.food_name != null && alternateFoodItem.price_min == null && alternateFoodItem.price_max == null) {
+                        alert("An alternate food order requires you to fill out a food name, minimum price and maximum price. ");
+                        e.preventDefault();
+                    }
+                    else if (alternateFoodItem.food_name == null && alternateFoodItem.price_min != null && alternateFoodItem.price_max == null) {
+                        alert("An alternate food order requires you to fill out a food name, minimum price and maximum price. ");
+                        e.preventDefault();
+                    }
+                    else if (alternateFoodItem.food_name == null && alternateFoodItem.price_min == null && alternateFoodItem.price_max != null) {
+                        alert("An alternate food order requires you to fill out a food name, minimum price and maximum price. ");
+                        e.preventDefault();
+                    }
                 }
-                else if (alternateFoodItem.food_name == null && alternateFoodItem.price_min != null && alternateFoodItem.price_max == null))
-                {
-                    alert("An alternate food order requires you to fill out a food name, minimum price and maximum price. ");
-                    break;
-                }
-                else if (alternateFoodItem.food_name == null && alternateFoodItem.price_min == null && alternateFoodItem.price_max != null)
-                {
-                    alert("An alternate food order requires you to fill out a food name, minimum price and maximum price. ");
-                    break;
-                }
-            }
-        }
+            });
+        });
         </script>
     </jsp:attribute>
 
@@ -103,7 +101,7 @@
                                         <div class="form_group">
                                             <label for = "comments"> Additional Comments:</label>
 
-                                            <input type = "text" class = "form-control" id ="comments" step="0.01" min="0" name="comments1" placeholder="Enter Comments (i.e. no pickles, extra ketchup" required>
+                                            <input type = "text" class = "form-control" id ="comments" step="0.01" min="0" name="comments1" placeholder="Enter Comments (i.e. no pickles, extra ketchup)">
                                         </div>
                                         <button class="btn btn-default" name='item1' onclick="addNewFoodOrder(this, 'alt')"><span class="glyphicon glyphicon-plus"></span> Alternate</button>
                                     </div>

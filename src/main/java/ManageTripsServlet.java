@@ -34,7 +34,7 @@ public class ManageTripsServlet extends TripServlet {
                 try {
                     Entity customer = datastore.get(KeyFactory.createKey("profile",cusEmail));
                     returnTrips.get(count).addCustomer(customer.getProperty("firstName") + " " +
-                            customer.getProperty("lastName")+ " " + customer.getProperty("email") +" ");
+                            customer.getProperty("lastName")+ " " + customer.getProperty("email") +",");
                 }catch (Exception e){
                     e.printStackTrace();
                 }

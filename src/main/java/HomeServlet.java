@@ -46,8 +46,7 @@ public class HomeServlet extends HttpServlet {
             List<Entity> myOrders = queryManager.query("order", "email", email ,1000, Query.FilterOperator.EQUAL);
             System.out.println("these must be ignored"+myOrders.size());
             for(Entity order:myOrders){
-                unique.add(KeyFactory.stringToKey((String)order.getProperty("trip")));
-
+                unique.add(order.getParent());
             }
             for (Entity trip : queriedTrips){
                 if(!unique.contains(trip.getKey())) {

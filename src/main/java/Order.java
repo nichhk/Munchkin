@@ -1,7 +1,4 @@
-import com.google.appengine.api.datastore.*;
-
-import java.util.ArrayList;
-import java.util.List;
+import com.google.appengine.api.datastore.Entity;
 
 /**
  * Created by nich on 1/31/15.
