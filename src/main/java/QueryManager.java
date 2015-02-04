@@ -40,4 +40,11 @@ public class QueryManager {
         PreparedQuery pq = dataStore.prepare(q.setFilter(filter));
         return pq.asList(withLimit(num));
     }
+    public Entity getParent(Key parentKey){
+        try {
+            return dataStore.get(parentKey);
+        }catch(Exception e){
+            return null;
+        }
+    }
 }
