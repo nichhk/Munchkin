@@ -38,6 +38,23 @@ public class SendSMSServlet extends HttpServlet {
         // Finds the orders associated with the trip
         ArrayList<String> phoneNumbers = new ArrayList<String>();
         // List of the phone numbers to text
+        /*
+        if(request.getParameter("textType").equals("tripCancel")){
+
+        }
+        else if(request.getParameter("textType").equals("orderCancel")){
+
+        }
+        else if(request.getParameter("textType").equals("confirmation")){
+
+        }
+        else if(request.getParameter("textType").equals("pickup")){
+
+        }
+        */
+
+
+
         for(Entity order:myOrders){
             try {
                 Entity person = datastore.get(KeyFactory.createKey("profile", (String) order.getProperty("email")));

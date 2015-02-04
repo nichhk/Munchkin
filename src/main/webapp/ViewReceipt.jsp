@@ -4,85 +4,91 @@
 <t:template isApproved="${isApproved}" log="${log}" page="${page}">
     <jsp:attribute name="scripts">
         <script>
+            var theForm = $('<form class="form" role="form" action="/transaction" method="post">');
+            var totalPrice = 0;
+            var i = 0;
+            var heading = $('<div class = "row">');
+            var headingName = $('<div> class = "col-sm-4" style = "color: #CC0000"').html("Item name");
+            var headingMaxPrice = $('<div> class = "col-sm-4" style = "color: #CC0000"').html("Max Price");
+            var headingActualPrice = $('<div> class = "col-sm-2" style = "color: #CC0000"').html("Item name");
+
+            heading.append(headingName);
+            heading.append(headingMaxPrice);
+            heading.append(headingActualPrice);
+            theForm.append(heading);
+
             $(function() {
-                var theForm = $('<form class="form" role="form" action="/transaction" method="post">');
-                var i = 0;
-                var totalPrice = 0;
-                console.log(${responseJson});
-                var data = ${responseJson};
+                $.each(${items}, function (index, item) {
+                    var itemWrapper = $('<div class = "well">');
+                    i++;
+                    //row for this food item
+                    var itemNumberRow = $('<div class = "row" style = "font-weight:bold">').html("Item number: " + i);
+                    var itemInfoRow = $('<div class = "row">');
+                    var theItem = $('<div class = "col-sm-4">').html(item.foodItem);
+                    var theMax = $('<div class = "col-sm-4">').html(item.priceMax);
+                    var inputHolder = $('<div class = "col-sm-2">');
+                    var inputPrice = $('<input type = "number" class = "form-control" step="0.01" min="0" class="money">');
+                    var checkBox = $('<input type = "checkbox">');
+                    var checkPrice = $('<div class = "form-group col-sm-2">');
+                    checkPrice.append(checkBox);
 
-                        var nameRow = $('<div class = "row">');
-                        var theName = $('<div style = "font-size:160%; font-weight:bold">').html(${name});
-                        nameRow.append(theName);
-                        theForm.append(nameRow);
+                    itemInfoRow.append(theItem);
+                    itemInfoRow.append(theMax);
+                    itemInfoRow.append(inputHolder);
+                    itemInfoRow.append(checkPrice);
 
-                        var numberRow = $('<div class = "row">');
-                        var theNumber = $('<div style = "font-size:130%; font-weight:bold">').html(${number});
-                        numberRow.append(theNumber);
-                        theForm.append(numberRow);
-                        var keyStrings = $('<div class> = "row"');
-                        var theItem = $('<div class = "col-sm-3">').html("Item");
-                        var theMax = $('<div class = "col-sm-3">').html("Max");
-                        var actual = $('<div class = "col-sm-3">').html("Actual");
-                        keyStrings.append(theItem);
-                        keyStrings.append(theMax);
-                        keyStrings.append(actual);
-                        theForm.append(keyStrings);
+                    itemWrapper.append(itemInfoRow);
 
-                        for(var i =0;i<data.primaryItems.length;i++){
+                    var comments = item.comments;
+                    if (!(comments === "")) {
+                        var commentRow = $('<div class = "row">').html(comments);
+                        itemWrapper.append(commentRow);
+                    }
 
+
+                    if (item.hasAlt == true) {
+                        var altItemNumberRow = $('<div style = "font-weight:bold">').html("Alternate Item number: " + i);
+                        var alt = item.alt;
+                        var altItemInfoRow = $('<div class = "row">');
+                        var altFoodItem = $('<div class = "col-sm-4">').html(alt.foodItem);
+                        var altPriceMax = $('<div class = "col-sm-4">').html(alt.priceMax);
+                        var altInputPrice = $('<input type = "number" class = "form-control" step="0.01" min="0" class="money">');
+                        var altCheckBox = $('<input type = "checkbox">');
+                        var altCheckPrice = $('<div class = "form-group col-sm-2">');
+                        altCheckPrice.append(checkBox);
+                        itemWrapper.append(altItemNumberRow);
+                        altItemInfoRow.append(altFoodItem);
+                        altItemInfoRow.append(altPriceMax);
+                        altItemInfoRow.append(altInputPrice);
+                        altItemInfoRow.append(altCheckPrice);
+                        itemWrapper.append(altItemInfoRow);
+
+                        var altComment = alt.comments;
+
+                        if (!(altComment === "")) {
+                            var altCommentRow = $('<div class = "row">').html(comments);
+                            itemWrapper.append(altCommentRow);
                         }
-                        //var data = order.item;
-                        var totalRow = $('<div class = "row">');
-                        var pItem = $('<div class = "col-sm-3" style = "font-weight:bold">').html(data[0]);
-                        var pMaxPrice = $('<div class = "col-sm-3">').html(data[1]);
-                        var actualPrice = $('<div class = "form-group col-sm-3">');
-                        var inputPrice = $('<input type = "number" class = "form-control" step="0.01" min="0" class="money">');
-                        actualPrice.append(inputPrice);
-                        var checkBox = $('<input type = "checkbox">');
-                        var checkPrice = $('<div class = "form-group col-sm-3">');
-                        checkPrice.append(checkBox);
-                        totalRow.append(pItem);
-                        totalRow.append(pMaxPrice);
-                        totalRow.append(actualPrice);
-                        totalRow.append(checkPrice);
-                        theForm.append(totalRow);
-                        $('<input style="display:hidden" type="text" name="number">').val(order.number).appendTo(theForm);
-                        if (data[2] != null) {
-                            var altItem = $('<div class = "col-sm-3" style = "color : #A0A0A1">').html(data[2]);
-                            var altMaxPrice = $('<div class = "col-sm-3" style = "color : #A0A0A1">').html(data[3]);
-                            var secondRow = $('<div class = "row">');
-                            var altActualPrice = $('<div class = "form-group col-sm-3" style = "color : #A0A0A1">');
-                            var altInputPrice = $('<input type = "number" class = "form-control" step="0.01" min="0" class="money">');
-                            altActualPrice.append(altInputPrice);
-                            var altCheckBox = $('<input type = "checkbox">');
-                            var altCheckPrice = $('<div class = "form-group col-sm-3">');
-                            altCheckPrice.append(checkBox);
-                            secondRow.append(altItem);
-                            secondRow.append(altMaxPrice);
-                            secondRow.append(altActualPrice);
-                            secondRow.append(altCheckPrice);
-                            theForm.append(secondRow);
-                        }
-
+                    }
+                    theForm.append(itemWrapper);
+                });
                 $('<p>').html("Subtotal: $ <span id='subtotal'>0.00</span>").appendTo(theForm);
                 $('<p>').html("Total, incl. fee and tax: $ <span id='total'>0.00</span>").appendTo(theForm);
                 $('<button type="submit" class="btn btn-primary">').appendTo(theForm);
                 theForm.appendTo($('#orders'));
             });
 
-
             $(function() {
-            var sum = 0;
-            $('.money').on('change', function() {
-                sum = 0;
-                $('.money').each(function() {
-                    sum += parseFloat(this.value);
+                var sum = 0;
+                $('.money').on('change', function() {
+                    sum = 0;
+                    $('.money').each(function() {
+                        sum += parseFloat(this.value);
+                    });
+                    $('#subtotal').html(sum);
+                    $('#total').html((sum*${percentFee} + 100.0 + 8.25)/100.0+0${flatFee});
                 });
-                $('#subtotal').html(sum);
-                $('#total').html((sum*${percentFee} + 100.0 + 8.25)/100.0+${flatFee});
             });
-        });
         </script>
     </jsp:attribute>
 
