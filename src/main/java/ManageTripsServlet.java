@@ -32,17 +32,26 @@ public class ManageTripsServlet extends TripServlet {
         List<Entity> myTrips = queryManager.query("trip","user",email,100000,Query.FilterOperator.EQUAL);
         // Finds the trip that have been created by the OAuth'd email
         for(Entity aTrip: myTrips){
+            /*
             returnTrips.add(new Trip(aTrip)); // Serializes the trip in an object
             long numResults =(long)aTrip.getProperty("maxOrder"); // Finds the maxOrders that a trip can take
             List<Entity>tripOrders = queryManager.query("order","trip", KeyFactory.keyToString(aTrip.getKey()), (int)numResults,Query.FilterOperator.EQUAL);
             // Finds the orders associated with a trip
             for(Entity order: tripOrders){
                 String customerEmail = (String)order.getProperty("email"); // Email of the customer associated with an order
+            */
+
+            returnTrips.add(new Trip(aTrip));
+            Query orders = new Query("order").setAncestor(aTrip.getKey());
+            PreparedQuery pq = datastore.prepare(orders);
+            for(Entity order: pq.asIterable()){
+                String customerEmail = (String)order.getProperty("email");
+
                 try {
                     // Serializes the customer data for a given trip
                     Entity customer = datastore.get(KeyFactory.createKey("profile",customerEmail));
                     returnTrips.get(count).addCustomer(customer.getProperty("firstName") + " " +
-                            customer.getProperty("lastName")+ " " + customer.getProperty("email") +" ");
+                            customer.getProperty("lastName")+ " " + customer.getProperty("email") +",");
                 }catch (Exception e){
                     e.printStackTrace();
                 }

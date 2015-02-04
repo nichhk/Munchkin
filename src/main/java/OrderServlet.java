@@ -8,7 +8,6 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
-import java.util.Date;
 
 /**
  * Created by compsci on 1/31/15.
@@ -33,10 +32,8 @@ public class OrderServlet extends HttpServlet {
         String email = user.getEmail();
         int numItems = Integer.parseInt(req.getParameter("numItems"));
         System.out.println("okay, now we're tryng to make an order element");
-
         Entity trip = queryManager.query("trip","time",Long.parseLong((String)req.getParameter("tripId")),1, Query.FilterOperator.EQUAL).get(0);
-        Entity order = new Entity("order");
-        order.setProperty("trip",KeyFactory.keyToString(trip.getKey()));
+        Entity order = new Entity("order", trip.getKey());
         order.setProperty("email", email);
         double depositAmt = 0.0;
         System.out.println("okay, now I'm adding each item");
@@ -72,7 +69,6 @@ public class OrderServlet extends HttpServlet {
         order.setProperty("items",items);
         try {
             System.out.println("Okay, trying to get the trip entity for this order");
-
             //max tax rate for local and state sales tax is 8.25%
             System.out.println("got the trip entity");
             depositAmt *= (Double.parseDouble((String)trip.getProperty("percentFee")) + 8.25 + 100.0) / 100.0;

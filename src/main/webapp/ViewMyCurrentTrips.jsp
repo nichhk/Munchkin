@@ -6,48 +6,47 @@
     <jsp:attribute name="scripts">
         <script>
             $(function() {
-                $.each( ${responseJson}, function(index, trip) {
-                    var eachCustomer = trip.customer.split(",");
-                    var numCustomers = eachCustomer.length;
-                    var allCustomers = $('<div id = "expandable">');
-                    for (var i = 0; i < numCustomers; i++) {
-                        var customer = eachCustomer[i].split(" ");
-                        var customerName = customer[0] + " " + customer[1];
-                        var newSpan = $('<p>').append($('<a href="/receipt?email=' + customer[2] + '&tripId=' + trip.key + '">').html(customerName));
-                        allCustomers.append(newSpan);
-                    }
+                    $.each(${responseJson}, function (index, trip) {
+                            var eachCustomer = trip.customer.split(",");
+                            var numCustomers = eachCustomer.length-1;
+                            var allCustomers = $('<div id = "expandable">');
+                            for (var i = 0; i < numCustomers; i++) {
+                                var customer = eachCustomer[i].split(" ");
+                                var customerName = customer[0] + " " + customer[1];
+                                var newSpan = $('<p>').append($('<a href="/receipt?email=' + customer[2] + '&tripId=' + trip.key + '">').html(customerName));
+                                allCustomers.append(newSpan);
+                            }
 
-                    var textForm = $('<form role = "form" action = "send_sms" method="get">');
-                    var formInput = $('<input type = "submit" value = "Text the Customers" id = "text">');
-                    var thisString = "<input type = \"hidden\" id = \"id\" name = \"id\" value=\""+ trip.key+"\" >";
-                    var hiddenText = $(thisString);
-                    //$("#id").val(myTripID);
-                    textForm.append(formInput);
-                    textForm.append(hiddenText);
+                        var textForm = $('<form role = "form" action = "send_sms" method="get">');
+                        var formInput = $('<input type = "submit" value = "Text the Customers" id = "text">');
+                        var thisString = "<input type = \"hidden\" id = \"id\" name = \"id\" value=\"" + trip.key + "\" >";
+                        var hiddenText = $(thisString);
+                        //$("#id").val(myTripID);
+                        textForm.append(formInput);
+                        textForm.append(hiddenText);
 
-                    var timeRow = $('<div class = "row" id = "timeRow">');
-                    var timeLeft = $('<div class="col-sm-4" style = "color:red">').html(trip.timeLeft);
-                    var timeETA = $('<div class = "col-sm-4">').html(trip.eta);
-                    timeRow.append(timeLeft);
+                        var timeRow = $('<div class = "row" id = "timeRow">');
+                        var timeLeft = $('<div class="col-sm-4" style = "color:red">').html(trip.timeLeft);
+                        var timeETA = $('<div class = "col-sm-4">').html(trip.eta);
+                        timeRow.append(timeLeft);
 
-                    timeRow.append(timeETA);
+                        timeRow.append(timeETA);
 
-
-
-                    $('<div id = "toClick">').appendTo('#trips')
-                            .append($('<span style = "font-size:160%; font-weight:bold">').html(trip.restaurant))
-                            .append(timeRow)
-                            .append($('<span>').html("Drop off location: " + trip.dropOffLocation))
-                            .append($('<br>'))
-                            .append($('<span>').html("Number of Customers: " + numCustomers))
-                            .append($('<br>'))
-                            .append(textForm)
-                            .append($('<br>'))
-                            .append(allCustomers.hide())
-                            .addClass('trip')
-                            .addClass('well well-lg')
-                });
+                        $('<div id = "toClick">').appendTo('#trips')
+                                .append($('<span style = "font-size:160%; font-weight:bold">').html(trip.restaurant))
+                                .append(timeRow)
+                                .append($('<span>').html("Drop off location: " + trip.dropOffLocation))
+                                .append($('<br>'))
+                                .append($('<span>').html("Number of Customers: " + numCustomers))
+                                .append($('<br>'))
+                                .append(textForm)
+                                .append($('<br>'))
+                                .append(allCustomers.hide())
+                                .addClass('trip')
+                                .addClass('well well-lg');
+                    });
             });
+
             $(function () {
                 $('#trips').on('click', "#toClick", function() {
                     $($(this).find("#expandable")).slideDown("fast");

@@ -53,7 +53,7 @@ public class TripServlet extends HttpServlet {
         trip.setProperty("eta",getMilliTime(req,"eta"));
         trip.setProperty("lastOrder",getMilliTime(req,"lastOrder"));
         datastore.put(trip);
-        try {
+        try{
             resp.sendRedirect("/");
         }catch (Exception e){
             e.printStackTrace();

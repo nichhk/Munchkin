@@ -44,6 +44,7 @@ public class CreateProfileServlet extends HttpServlet {
         }catch (Exception e){
             e.printStackTrace();
         }
+
     }
 
     /* Takes an inputted form and creates a user account on Munchin.com

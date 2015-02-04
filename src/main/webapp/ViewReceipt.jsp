@@ -29,8 +29,7 @@
                         keyStrings.append(actual);
                         theForm.append(keyStrings);
 
-                        for(var i =0;i<data.primaryItems.length;i++) {
-
+                        for(var i =0;i<data.primaryItems.length;i++){
 
                         }
                         //var data = order.item;

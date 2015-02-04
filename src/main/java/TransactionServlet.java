@@ -30,7 +30,6 @@ public class TransactionServlet extends HttpServlet {
         double totalAmount = Double.parseDouble(req.getParameter("totalAmount"));
         long orderNumber = Long.parseLong(req.getParameter("orderNumber"));
 
-
         Query q = new Query("order");
         Query.FilterPredicate orderNum = new Query.FilterPredicate("trip",
                 Query.FilterOperator.EQUAL, orderNumber);
@@ -44,7 +43,6 @@ public class TransactionServlet extends HttpServlet {
         double toCustomer = Double.parseDouble((String)completeOrder.getProperty("depositAmt")) - totalAmount;
         try{
             req.getRequestDispatcher("GetPaid.jsp").forward(req, resp);
-
         }
         catch (Exception e){
             e.printStackTrace();

@@ -39,7 +39,10 @@ public class HomeServlet extends HttpServlet {
             String email = user.getEmail();
             req.setAttribute("isApproved", "1");
             req.setAttribute("log", LoginStatus.getLogOutUrl("/"));
+
             long curTime = new Date().getTime(); // Calculates the current time as a milliseconds timestamp
+
+
             List<Entity> queriedTrips = queryManager.query("trip","lastOrder", curTime-21600000, 1000,Query.FilterOperator.GREATER_THAN);
             // Queries the trips to find those that are still available for orders
             ArrayList<Trip> trips = new ArrayList<Trip>(); // Valid trips
@@ -47,7 +50,9 @@ public class HomeServlet extends HttpServlet {
             List<Entity> myOrders = queryManager.query("order", "email", email ,1000, Query.FilterOperator.EQUAL);
             // Checks the orders that belong to this user
             for(Entity order:myOrders){
+
                 unique.add(order.getParent()); // Adds the keys of the trips the users have joined
+
             }
             for (Entity trip : queriedTrips){
                 if(!unique.contains(trip.getKey())) { // True if the user has not gone on said trip

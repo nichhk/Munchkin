@@ -28,12 +28,13 @@
                                 <input type = "college" class = "form-control" name = "college" id="college" placeholder="Enter College" required>
                             </div>
                             <div class="form_group">
-                                <label for = "year"> Year:</label>
+                                <label for = "year"> Graduation Year:</label>
                                 <input type = "year" class = "form-control" name = "year" id="year" placeholder="Enter Year" required>
                             </div>
                             <div class="form_group">
                                 <label for = "phoneNumber"> Phone Number:</label>
-                                <input type = "phoneNumber" class = "form-control" id = "phoneNumber" name = "phoneNumber" placeholder="Enter Phone Number" required>
+                                <input type = "phoneNumber" class = "form-control" id = "areaCode" name = "phoneNumber" placeholder="xxxxxxxxxx" required>
+
                             </div>
                             <button type="submit" class="btn btn-default">Submit</button>
                         </form>
