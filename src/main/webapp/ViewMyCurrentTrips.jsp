@@ -41,17 +41,19 @@
                                 .append($('<br>'))
                                 .append(textForm)
                                 .append($('<br>'))
+                                .append(allCustomers)
                                 .addClass('trip')
                                 .addClass('well well-lg');
 
                     });
             });
-
+            /*
             $(function () {
                 $('#trips').on('click', "#toClick", function() {
                     $($(this).find("#expandable")).slideDown("fast");
                 });
             });
+            */
         </script>
     </jsp:attribute>
 

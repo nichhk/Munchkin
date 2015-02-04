@@ -37,11 +37,9 @@
             }
             else{
                 var food_name = $('<div class="form-group"> <label for="foodItem'+count+'">Name of food item</label><input type="text" class="form-control" id="firstItem'+count+'" name="firstItem'+count+'" placeholder="Enter the food"> </div>');
-
                 var price_max = $('<div class="form-group"> <label for="priceMax'+count+'">Maximum Price</label><input type="number" step="0.01" min="0" class="form-control" id="priceMax'+count+'" name="priceMax'+count+'"placeholder="Enter maximum price"> </div>');
                 var comments = $('<div class="form-group"> <label for="comments'+count+'">Additional Comments</label><input type="text" class="form-control" id="comments'+count+'" name="comments'+count+'"placeholder="Enter comments (i.e. no pickles, extra ketchup)"> </div>');
-                var button = $('<button class="btn btn-default" name="item'+count+'" onclick="addNewFoodOrder(this, \'alt\')"><span class="glyphicon glyphicon-plus"></span> Alternate</button>');
-
+                var button = $('<a class="btn btn-default" name="item'+count+'" onclick="addNewFoodOrder(this, \'alt\')"><span class="glyphicon glyphicon-plus"></span> Alternate</a>');
                 $("#inputs").append("<br>");
                 var newDiv = $("<div>").attr("id", "item"+count)
                         .append($('<h3>').html("Food Item"))
@@ -54,7 +52,7 @@
                 count++;
             }
         }
-
+/*
         $('#orderForm').on('submit', function(e) {
             $.each($('.alt'), function (index, alternateFoodItems) {
                 if (alternateFoodItem.attr().indexOf("alt") >= 0) {
@@ -72,7 +70,7 @@
                     }
                 }
             });
-        });
+        });*/
         </script>
     </jsp:attribute>
 
@@ -103,13 +101,14 @@
 
                                             <input type = "text" class = "form-control" id ="comments" step="0.01" min="0" name="comments1" placeholder="Enter Comments (i.e. no pickles, extra ketchup)">
                                         </div>
-                                        <button class="btn btn-default" name='item1' onclick="addNewFoodOrder(this, 'alt')"><span class="glyphicon glyphicon-plus"></span> Alternate</button>
+                                        <a class="btn btn-default" name='item1' onclick="addNewFoodOrder(this, 'alt')">
+                                            <span class="glyphicon glyphicon-plus"></span> Alternate</a>
                                     </div>
                                 </div>
                                 <br>
-                                <button class="btn btn-default" onclick="addNewFoodOrder(this, 'food')">
+                                <a class="btn btn-default" onclick="addNewFoodOrder(this, 'food')">
                                     <span class="glyphicon glyphicon-plus"></span>
-                                </button>
+                                </a>
                                 <br>
                                 <input type="number" name="numItems" id="numItems" style="display: none" value=1>
 
