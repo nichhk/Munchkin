@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.text.DecimalFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 /**
@@ -39,23 +40,26 @@ public class OrderServlet extends HttpServlet {
         order.setProperty("email", email);
         double depositAmt = 0.0;
         System.out.println("okay, now I'm adding each item");
+        ArrayList<EmbeddedEntity> items = new ArrayList<EmbeddedEntity>();
         for (int i = 1; i <= numItems; i++){
-            Entity item = new Entity("item", new Date().getTime());
-            item.setProperty("order",order.getProperty("trip"));
+            EmbeddedEntity item = new EmbeddedEntity();
             item.setProperty("foodItem", req.getParameter("foodItem" + i));
             item.setProperty("priceMax", req.getParameter("priceMax" + i));
             item.setProperty("comments", req.getParameter("comments" + i));
-            dataStore.put(item);
-            System.out.println("just put an item in the array");
+
             if (req.getParameter("altFoodItem"+i) != null){
-                Entity alt = new Entity("alt", item.getKey());
+                EmbeddedEntity alt = new EmbeddedEntity();
                 alt.setProperty("foodItem", req.getParameter("altFoodItem" + i));
                 alt.setProperty("priceMax", req.getParameter("altPriceMax" + i));
                 alt.setProperty("comments", req.getParameter("altComments" + i));
-                dataStore.put(alt);
+                item.setProperty("alt",alt);
             }
+            else{
+                item.setProperty("",null);
+            }
+            items.add(item);
             System.out.println("price max is " + req.getParameter("priceMax"+i));
-            System.out.println("alt price max is " + req.getParameter("altPriceMax"+i));
+            System.out.println("alt price max is " + req.getParameter("altPriceMax" + i));
             if (req.getParameter("altPriceMax" + i) == null){
                 depositAmt += Double.parseDouble(req.getParameter("priceMax"+i));
             }
@@ -63,7 +67,9 @@ public class OrderServlet extends HttpServlet {
                 depositAmt += Math.max(Double.parseDouble(req.getParameter("priceMax" + i)),
                         Double.parseDouble(req.getParameter("altPriceMax" + i)));
             }
+
         }
+        order.setProperty("items",items);
         try {
             System.out.println("Okay, trying to get the trip entity for this order");
 

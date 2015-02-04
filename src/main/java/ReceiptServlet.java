@@ -36,7 +36,7 @@ public class ReceiptServlet extends HttpServlet {
 
             PreparedQuery pq1 = datastore.prepare(q1.setFilter(emailFilter).setFilter(orderFilter));
             for (Entity anOrder : pq1.asIterable()){
-                order = new Order(anOrder);
+                order = new Order(anOrder,"fuck",1);
                 System.out.println("SHOUDL BE ME TOOOOO!!!!!!");
             }
             req.setAttribute("number", "6616451987");

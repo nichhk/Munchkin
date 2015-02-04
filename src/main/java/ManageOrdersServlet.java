@@ -24,9 +24,15 @@ public class ManageOrdersServlet extends HttpServlet {
         myTrips = new ArrayList<>();
         String email = LoginStatus.getUserEmail();
         List<Entity> orders = queryManager.query("order","email",email,1,Query.FilterOperator.EQUAL);
+        ArrayList<EmbeddedEntity> items= (ArrayList<EmbeddedEntity>)(orders.get(0).getProperty("items"));
+        System.out.println("Prepared a "+ items.get(0).getProperty("foodItem"));
+        System.out.println("with a "+ items.get(0).getProperty("comments"));
+        EmbeddedEntity entity = (EmbeddedEntity)(items.get(0).getProperty("alt"));
+        System.out.println("and alt"+entity.getProperty("foodItem"));
+        /*
         for(Entity order:orders){
             System.out.println("cooking order");
-            myOrders.add(new Order(order));
+            myOrders.add(new Order(order,"error",1));
             try {
                 List<Entity> trips= queryManager.query("trip","time",(String)order.getProperty("tripId"),1,Query.FilterOperator.EQUAL);
                 for(Entity trip:trips){
@@ -41,5 +47,6 @@ public class ManageOrdersServlet extends HttpServlet {
         try {
             req.getRequestDispatcher("ManageOrder.jsp").forward(req, resp);
         } catch (Exception e) {e.printStackTrace();}
+        */
     }
 }
