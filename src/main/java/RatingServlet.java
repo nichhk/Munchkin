@@ -14,6 +14,7 @@ import java.io.IOException;
 public class RatingServlet extends HttpServlet {
 
     public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+
         req.setAttribute("page", "null");
         req.setAttribute("isApproved", "1");
         req.setAttribute("log", LoginStatus.getLogOutUrl("/"));
@@ -24,6 +25,7 @@ public class RatingServlet extends HttpServlet {
     }
 
     public void doPost(HttpServletRequest req, HttpServletResponse resp){
+
         DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
         int rating = Integer.parseInt(req.getParameter("rating"));
         String comment = req.getParameter("comment");

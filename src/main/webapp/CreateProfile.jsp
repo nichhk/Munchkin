@@ -33,9 +33,7 @@
                             </div>
                             <div class="form_group">
                                 <label for = "phoneNumber"> Phone Number:</label>
-                                <input type = "phoneNumber" class = "form-control" id = "areaCode" name = "phoneNumber" placeholder="(xxx)" required>
-                                <input type = "phoneNumber" class = "form-control" id = "partOne" name = "phoneNumber" placeholder="-xxx-" required>
-                                <input type = "phoneNumber" class = "form-control" id = "partTwo" name = "phoneNumber" placeholder="-xxxx-" required>
+                                <input type = "phoneNumber" class = "form-control" id = "areaCode" name = "phoneNumber" placeholder="xxxxxxxxxx" required>
 
                             </div>
                             <button type="submit" class="btn btn-default">Submit</button>
