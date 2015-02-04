@@ -18,44 +18,45 @@ public class HomeServlet extends HttpServlet {
 
     private QueryManager queryManager = new QueryManager();
 
-    @Override
-    public void doGet(HttpServletRequest req, HttpServletResponse resp){
-        req.setAttribute("page", "null");
+    /* Called by users that do not have an account on Munchin.com. Redirects them to the CreateProfile.jsp
+     */
 
-        if (!LoginStatus.getStatus()){
+    public void doGet(HttpServletRequest req, HttpServletResponse resp){
+
+        req.setAttribute("page", "null");
+        if (!LoginStatus.getStatus()){ // True if the user has not logged in to an account
             req.setAttribute("isApproved", "0");
             req.setAttribute("log", LoginStatus.getLogInUrl("/create_profile"));
             try {
-                System.out.println("going to home2.jsp");
                 req.setAttribute("logIn", LoginStatus.getLogInUrl("/"));
                 req.setAttribute("createProf", LoginStatus.getLogInUrl("/create_profile"));
                 req.getRequestDispatcher("Home2.jsp").forward(req, resp);
             } catch(Exception e) {e.printStackTrace();}
         }
-        else{
+        else{ // Runs if the user has logged in to an account
             UserService userService = UserServiceFactory.getUserService(); // Finds the user's email from OAuth
             com.google.appengine.api.users.User user = userService.getCurrentUser();
             String email = user.getEmail();
             req.setAttribute("isApproved", "1");
             req.setAttribute("log", LoginStatus.getLogOutUrl("/"));
-            long curTime = new Date().getTime();
+            long curTime = new Date().getTime(); // Calculates the current time as a milliseconds timestamp
             List<Entity> queriedTrips = queryManager.query("trip","lastOrder", curTime-21600000, 1000,Query.FilterOperator.GREATER_THAN);
-            ArrayList<Trip> trips = new ArrayList<Trip>();
-            HashSet<Key> unique = new HashSet<Key>();
+            // Queries the trips to find those that are still available for orders
+            ArrayList<Trip> trips = new ArrayList<Trip>(); // Valid trips
+            HashSet<Key> unique = new HashSet<Key>(); // Checks to see if a user has already joined a trip
             List<Entity> myOrders = queryManager.query("order", "email", email ,1000, Query.FilterOperator.EQUAL);
-            System.out.println("these must be ignored"+myOrders.size());
+            // Checks the orders that belong to this user
             for(Entity order:myOrders){
-                unique.add(KeyFactory.stringToKey((String)order.getProperty("trip")));
-
+                unique.add(order.getParent()); // Adds the keys of the trips the users have joined
             }
             for (Entity trip : queriedTrips){
-                if(!unique.contains(trip.getKey())) {
-                    trips.add(new Trip(trip));
+                if(!unique.contains(trip.getKey())) { // True if the user has not gone on said trip
+                    trips.add(new Trip(trip)); // Serializes the trip entity to a trip object in the ArrayList
                 }
             }
-            req.setAttribute("trips", new Gson().toJson(trips));
+            req.setAttribute("trips", new Gson().toJson(trips)); // Returns a Json representation of the trips
             try{
-                req.getRequestDispatcher("Home1.jsp").forward(req, resp);
+                req.getRequestDispatcher("Home1.jsp").forward(req, resp); // Sends the user back to the home page
             } catch (Exception e) {
                 e.printStackTrace();
             }

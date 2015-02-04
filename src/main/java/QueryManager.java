@@ -9,39 +9,35 @@ public class QueryManager {
 
     private static DatastoreService dataStore = DatastoreServiceFactory.getDatastoreService();
 
+    /* Used to query the datastore for entities by their property values
+     */
+
     public List<Entity> query(String type, String property, String value, int num, Query.FilterOperator op){
         Query q = new Query(type);
-        Query.FilterPredicate filter = new Query.FilterPredicate(property,
-                op, value);
+        Query.FilterPredicate filter = new Query.FilterPredicate(property,op, value);
         PreparedQuery pq = dataStore.prepare(q.setFilter(filter));
         try {
-            return pq.asList(withLimit(num));
+            return pq.asList(withLimit(num)); // Returns at max "num" results from datastore
         }catch (Exception e){
-            try{
+            try{ // If the original query returned no results, attempt to query for a Long version of the value
                 return query(type,property,Long.parseLong(value), num, op);
             }
             catch (Exception e1){
                 e1.printStackTrace();
             }
         }
-        return new ArrayList<Entity>();
+        return new ArrayList<Entity>(); // Returns an empty list if all else fails
     }
+
+    /* Attempts to query the datastore for entities by properties using a long input value
+     */
+
     public List<Entity> query(String type, String property, Long value, int num, Query.FilterOperator op){
+
         Query q = new Query(type);
         Query.FilterPredicate filter = new Query.FilterPredicate(property,
                 op, value);
         PreparedQuery pq = dataStore.prepare(q.setFilter(filter));
         return pq.asList(withLimit(num));
-
-    }
-    public List<Entity> queryByKey(String type, Key value, int limit){
-
-        Query q = new Query(type);
-        Query.Filter filter = new Query.FilterPredicate(Entity.KEY_RESERVED_PROPERTY,Query.FilterOperator.EQUAL,value);
-        PreparedQuery pq = dataStore.prepare(q.setFilter(filter));
-        return pq.asList(withLimit(limit));
-
-
-
     }
 }
