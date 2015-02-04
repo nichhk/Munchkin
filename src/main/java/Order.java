@@ -7,15 +7,11 @@ import java.util.List;
  * Created by nich on 1/31/15.
  */
 public class Order {
-    List<Item> items = new ArrayList<Item>();
     String email;
-    String totalPrice;
     String tripId;
-
-    public Order(Entity order, String tripId, double totalPrice){
+    public Order(Entity order){
         this.email = (String)order.getProperty("email");
-        this.totalPrice = Double.toString(totalPrice);
-        this.tripId = tripId;
+        this.tripId = (String)order.getProperty("trip");
     }
     public class Item{
         public String foodItem;

@@ -22,17 +22,17 @@ public class CreateProfileServlet extends HttpServlet {
         UserService userService = UserServiceFactory.getUserService(); // Finds the user's email from OAuth
         User user = userService.getCurrentUser();
         String email = user.getEmail();
-        if(checkValidEmail(email)) {
-            if (checkUniqueEmail(email)) {
+        if(checkValidEmail(email)) { // Check if the email is a @rice.edu
+            if (checkUniqueEmail(email)) { // Checks if the email has already been used
                 try {
-                    req.getRequestDispatcher("CreateProfile.jsp").forward(req, resp);
+                    req.getRequestDispatcher("CreateProfile.jsp").forward(req, resp); //
                     return;
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
             }
             else{
-                req.setAttribute("Error", "You already have an account at" + email);
+                req.setAttribute("Error", "You already have an account at" + email); // Writes the error message and redirects to the page
             }
         }
         else{

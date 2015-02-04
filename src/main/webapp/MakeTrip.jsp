@@ -83,9 +83,9 @@
 
                                             <label for ="flat"><input type="checkbox" id = "flat" name = "flat">Flat Fee</label>
 
-                                            <input type="number" class="form-control" id="percentFee" name = "percentFee" placeholder="10% -> ex: 10" required>
+                                            <input type="number" class="form-control" id="percentFee" name = "percentFee" type ="number" step="any" min="0" placeholder="10% -> ex: 10" required>
 
-                                            <input type="number" class="form-control" id="flatFee" name = "flatFee" placeholder="$3.50 -> ex: 3.5" required>
+                                            <input type="number" class="form-control" id="flatFee" name = "flatFee" type ="number" step="any" min="0" placeholder="$3.50 -> ex: 3.5" required>
                                         </div>
                                     </div>
                                     <div class = "form-group">

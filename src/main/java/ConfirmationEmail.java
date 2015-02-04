@@ -17,7 +17,6 @@ public class ConfirmationEmail {
             msg.addRecipient(Message.RecipientType.TO,
                     new InternetAddress(email, name));
             msg.setSubject("Hello " + name + "," + "Welcome to Munchin!");
-            //System.out.println("Reply to: " + email + "\n" +msgBody);
             msg.setText("Hello "+name+", \n" + msgBody);
             Transport.send(msg);
        }
