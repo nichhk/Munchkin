@@ -27,19 +27,12 @@ public class ManageOrdersServlet extends HttpServlet {
             myOrders.add(new Order(order));
             myTrips.add(new Trip(queryManager.getParent(order.getParent())));
         }
-        req.setAttribute("responseJson", new Gson().toJson(new orderAndTrip(myTrips,myOrders)));
-        System.out.println(new Gson().toJson(myOrders));
+        req.setAttribute("orders", new Gson().toJson(myOrders));
+        req.setAttribute("trips", new Gson().toJson(myTrips));
+        System.out.println(req.getAttribute("orders"));
+        System.out.println(req.getAttribute("trips"));
         try {
             req.getRequestDispatcher("ManageOrder.jsp").forward(req, resp);
         } catch (Exception e) {e.printStackTrace();}
-
-    }
-    public class orderAndTrip{
-        List<Trip> trips = new ArrayList<Trip>();
-        List<Order> orders = new ArrayList<Order>();
-        public orderAndTrip(List<Trip> trips, List<Order> orders){
-            this.trips = trips;
-            this.orders = orders;
-        }
     }
 }

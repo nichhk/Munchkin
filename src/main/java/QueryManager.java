@@ -40,10 +40,29 @@ public class QueryManager {
         PreparedQuery pq = dataStore.prepare(q.setFilter(filter));
         return pq.asList(withLimit(num));
     }
-    public Entity getParent(Key parentKey){
+    public Entity getParent(Key key){
+        try{
+            return dataStore.get(key);
+        }catch (Exception e){
+            return null;
+        }
+    }
+    public List<Entity> getChildren(Key myKey, String childType){
         try {
-            return dataStore.get(parentKey);
-        }catch(Exception e){
+            Entity me = dataStore.get(myKey);
+            Query q = new Query(childType).setAncestor(myKey);
+            PreparedQuery pq = dataStore.prepare(q);
+            long maxOrder = (long)me.getProperty("maxOrder");
+            return pq.asList(withLimit((int)maxOrder));
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return null;
+    }
+    public Entity queryByKey(Key key){
+        try{
+            return dataStore.get(key);
+        }catch (Exception e){
             return null;
         }
     }
