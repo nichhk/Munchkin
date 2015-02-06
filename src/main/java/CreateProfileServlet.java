@@ -77,6 +77,8 @@ public class CreateProfileServlet extends HttpServlet {
                 profile.setProperty("rating", 0); // Initial reviews start out as 0
                 profile.setProperty("numReviews", 0);
                 profile.setProperty("numTrips", 0); // Used to calculate the updated average ratings
+                profile.setProperty("textNotification",true); // Whether the user wants to receive notifications from texts/email
+                profile.setProperty("emailNotification",true);
                 datastore.put(profile);
                 new ConfirmationEmail().sendWelcomeEmail(req.getParameter("firstName"), email); // Sends a welcome email to the new user
                 req.setAttribute("Error",null); // No error was raised in this process
