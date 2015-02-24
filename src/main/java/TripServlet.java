@@ -60,17 +60,19 @@ public class TripServlet extends HttpServlet {
         }
     }
     private void findFee(Entity trip, HttpServletRequest req){
-        if(req.getParameter("flat")==null || req.getParameter("flatFee")==null){
+        String flatFee = req.getParameter("flatFee");
+        if(flatFee == null){
            trip.setProperty("flatFee", "0");
         }
         else{
-            trip.setProperty("flatFee",req.getParameter("flatFee"));
+            trip.setProperty("flatFee", flatFee);
         }
-        if((req.getParameter("percentage")==null)||req.getParameter("percentFee")==null){
+        String percentFee = req.getParameter("percentFee");
+        if(percentFee == null){
             trip.setProperty("percentFee","0");
         }
         else{
-            trip.setProperty("percentFee",req.getParameter("percentFee"));
+            trip.setProperty("percentFee", percentFee);
         }
     }
     private Long getMilliTime(HttpServletRequest req, String property){

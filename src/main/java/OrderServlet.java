@@ -78,6 +78,9 @@ public class OrderServlet extends HttpServlet {
         req.setAttribute("depositAmt", new DecimalFormat("#.##").format(depositAmt));
         req.setAttribute("email", LoginStatus.getUserEmail());
         req.setAttribute("note", "Placing an order with Munchin");
+        req.setAttribute("page", "null");
+        req.setAttribute("isApproved", "1");
+        req.setAttribute("log", LoginStatus.getLogOutUrl("/"));
         try {
             req.getRequestDispatcher("Deposit.jsp").forward(req, resp);
         } catch (Exception e) {e.printStackTrace();}

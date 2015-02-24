@@ -15,9 +15,6 @@
     <jsp:attribute name="content">
         <div class="site-wrapper-inner">
             <div class="cover-container">
-                <!--
-                thanks to : http://bootsnipp.com/snippets/featured/bootstrap-3x-contact-form-layout
-                -->
                 <div id="content" class="inner cover" style="text-align: left">
                     <div class="row">
                         <div class="col-md-12">
@@ -25,7 +22,8 @@
                                 and tax, is $${depositAmt}. Clicking the button below will take you
                                 to Venmo to place your order.
                             </p>
-                                <a class="btn btn-primary" id="id" href="https://venmo.com/nicholas-kwon?txn=pay&amount=${depositAmt}">Pay with Venmo</a>
+                            <!-- <a class="btn btn-primary" id="id" href="https://venmo.com/nicholas-kwon?txn=pay&amount=${depositAmt}">Pay with Venmo</a> -->
+                            <iframe href="https://venmo.com/nicholas-kwon?txn=pay&amount=${depositAmt}"></iframe>
                         </div>
                     </div>
                 </div>

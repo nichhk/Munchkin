@@ -9,10 +9,12 @@ import java.io.IOException;
 public class DepositServlet extends HttpServlet {
 
     public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        double estimatedPrice = Double.parseDouble(req.getParameter("depositAmt"));
-        System.out.println("estimated price is "+ estimatedPrice);
-        //String rounded =
-        //resp.sendRedirect("https://venmo.com/Joseph-Hwang-2?txn=pay&amount="+rounded);
+        req.setAttribute("page", "null");
+        req.setAttribute("isApproved", "1");
+        req.setAttribute("log", LoginStatus.getLogOutUrl("/"));
+        try {
+            req.getRequestDispatcher("Deposit.jsp").forward(req, resp);
+        } catch (Exception e) {e.printStackTrace();}
     }
     public void doPost(HttpServletRequest req, HttpServletResponse resp){
     }

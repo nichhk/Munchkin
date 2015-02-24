@@ -20,6 +20,11 @@
     <dependencies>
         <!-- Compile/runtime dependencies -->
         <dependency>
+            <groupId>com.braintreepayments.gateway</groupId>
+            <artifactId>braintree-java</artifactId>
+            <version>2.40.0</version>
+        </dependency>
+        <dependency>
             <groupId>com.twilio.sdk</groupId>
             <artifactId>twilio-java-sdk</artifactId>
             <version>3.4.5</version>

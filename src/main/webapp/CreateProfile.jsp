@@ -8,9 +8,6 @@
     <jsp:attribute name="content">
         <div class="site-wrapper-inner">
             <div class="cover-container">
-                <!--
-                thanks to : http://bootsnipp.com/snippets/featured/bootstrap-3x-contact-form-layout
-                -->
                 <div id="content" class="inner cover" style="text-align: left">
                     <div class="row">
                         <div class="col-md-12">

@@ -54,6 +54,7 @@ public class HomeServlet extends HttpServlet {
                 unique.add(order.getParent()); // Adds the keys of the trips the users have joined
 
             }
+
             for (Entity trip : queriedTrips){
                 if(!unique.contains(trip.getKey())) { // True if the user has not gone on said trip
                     trips.add(new Trip(trip)); // Serializes the trip entity to a trip object in the ArrayList

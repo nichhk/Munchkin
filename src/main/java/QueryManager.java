@@ -44,6 +44,7 @@ public class QueryManager {
         try{
             return dataStore.get(key);
         }catch (Exception e){
+            e.printStackTrace();
             return null;
         }
     }
