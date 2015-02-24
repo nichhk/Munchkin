@@ -11,5 +11,4 @@ public class CreateNotification {
     public void create(){
         System.out.println("notification created");
     }
-
 }
