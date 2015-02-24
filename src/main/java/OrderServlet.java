@@ -65,6 +65,7 @@ public class OrderServlet extends HttpServlet {
 
         }
         order.setProperty("items",items);
+        order.setProperty("delivered",false);
         try {
             System.out.println("Okay, trying to get the trip entity for this order");
             //max tax rate for local and state sales tax is 8.25%
