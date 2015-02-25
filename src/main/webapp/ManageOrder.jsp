@@ -105,7 +105,7 @@
                     subTotalRow.append(sumPart);
                     subTotalRow.append(flatFeePart);
                     subTotalRow.append(percentFee);
-                    var total = sum*.0825 + parseFloat(flatFee) + sum * (parseFloat(percentFee)) + sum;
+                    var total = sum*1.0825 + parseFloat(flatFee) + sum * (parseFloat(percentFee))/100;
                     var stringTotal = total.toFixed(2).toString();
                     var totalRow = $('<div style = "font-weight:bold">').html("Maximum Expected Total (tax inc.): " + stringTotal);
 
