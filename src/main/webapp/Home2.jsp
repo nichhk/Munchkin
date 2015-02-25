@@ -14,7 +14,7 @@
                 thanks to : http://bootsnipp.com/snippets/featured/bootstrap-3x-contact-form-layout
                 -->
                 <div class="page-header">
-                    <h1>Welcome to Munchin! The easiest and most convenient way to get a quick bite to eat!</h1>
+                    <h1>Welcome to Munchkin! The easiest and most convenient way to get a quick bite to eat!</h1>
                 </div>
                 <p>
                     Make sure to create an account with your @rice.edu email. If you already have an account, then log in
