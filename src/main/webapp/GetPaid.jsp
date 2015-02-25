@@ -18,7 +18,7 @@
                         processData: false,
                         contentType: false,
                         success: function(json){
-                            window.location.href = "http://hackmunchin.appspot.com";
+                            window.location.href = "http://hackmunchkin.appspot.com";
                         }
                     });
                 });
@@ -42,7 +42,7 @@
                                            value="4MX7yxwTu97RjLktV4TvkHmcRNawPwsG">
                                     <input type="text" name="phone" id="phone" value="9147140806">
                                     <input type="number" name="amount" id="amount" value="${totalAmount}">
-                                    <input type="text" name="note" id="note" value="Thanks for munchin">
+                                    <input type="text" name="note" id="note" value="Thanks for munchkin!">
                                 </div>
                                 <button type="submit" class="btn btn-primary">Pay with Venmo</button>
                             </form>
