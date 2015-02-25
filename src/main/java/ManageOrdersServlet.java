@@ -21,12 +21,12 @@ public class ManageOrdersServlet extends HttpServlet {
         List<Trip> myTrips = new ArrayList<>();
         String email = LoginStatus.getUserEmail();
         List<Entity> orders = queryManager.query("order","email",email,1000,Query.FilterOperator.EQUAL);
-        ArrayList<EmbeddedEntity> items= (ArrayList<EmbeddedEntity>)(orders.get(0).getProperty("items"));
         for(Entity order:orders){
             System.out.println("printing another");
             myOrders.add(new Order(order));
             myTrips.add(new Trip(queryManager.getParent(order.getParent())));
         }
+
         req.setAttribute("orders", new Gson().toJson(myOrders));
         req.setAttribute("trips", new Gson().toJson(myTrips));
         System.out.println(req.getAttribute("orders"));
@@ -34,5 +34,6 @@ public class ManageOrdersServlet extends HttpServlet {
         try {
             req.getRequestDispatcher("ManageOrder.jsp").forward(req, resp);
         } catch (Exception e) {e.printStackTrace();}
+
     }
 }

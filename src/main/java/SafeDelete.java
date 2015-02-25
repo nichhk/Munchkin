@@ -11,7 +11,7 @@ public class SafeDelete {
     private QueryManager queryManager = new QueryManager();
     private static DatastoreService dataStore= DatastoreServiceFactory.getDatastoreService();
     private ContactUser contactUser = new ContactUser();
-    private CreateNotification createNotification = new CreateNotification();
+    //private CreateNotification createNotification = new CreateNotification();
     public boolean deleteTrip(Key key){
         List<Entity> myOrders = queryManager.getChildren(key,"order");
         Entity trip = queryManager.queryByKey(key);
@@ -20,7 +20,7 @@ public class SafeDelete {
                Entity customer = dataStore.get(KeyFactory.createKey("profile", (String) order.getProperty("email")));
                contactUser("cancelTrip", customer,order, false);
                dataStore.delete(order.getKey());
-                createNotification.create();
+               // createNotification.create();
             }catch (Exception e){
                 e.printStackTrace();
             }
@@ -37,7 +37,7 @@ public class SafeDelete {
             Entity courier = dataStore.get(KeyFactory.createKey("profile",email));
             contactUser("cancelOrder",courier,order,false);
             dataStore.delete(order.getKey());
-            createNotification.create();
+            //createNotification.create();
             return true;
         }catch (Exception e){
             return false;
@@ -48,7 +48,14 @@ public class SafeDelete {
     it deletes the orders associated with its trip.
      */
 
-    public boolean deleteProfile(){
+    public boolean deleteProfile(Key key){
+        try {
+            Entity user = dataStore.get(key);
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
         return true;
     }
     /* Contacts the proper user about the update. There are 3 types:
@@ -68,7 +75,7 @@ public class SafeDelete {
                 contactUser.sendEmail(type, user, related);
             }
         }catch (Exception e){
-            new CreateNotification();
+            //new CreateNotification();
         }
     }
 }

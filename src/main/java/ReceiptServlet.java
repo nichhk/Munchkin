@@ -24,6 +24,7 @@ public class ReceiptServlet extends HttpServlet {
             thisTrip = datastore.get(KeyFactory.stringToKey(trip));
         }
         catch (Exception e) { e.printStackTrace(); }
+        System.out.println("flatfee is "+thisTrip.getProperty("flatFee") );
         req.setAttribute("flatFee", thisTrip.getProperty("flatFee") );
         req.setAttribute("percentFee",thisTrip.getProperty("percentFee"));
         System.out.println("EMAIL IS "+email);

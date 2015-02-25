@@ -1,8 +1,8 @@
 /**
  * Created by compsci on 2/5/15.
  */
-public class CreateNotification {
-    public CreateNotification(){
+public class createNotification {
+    public createNotification(){
 
     }
     public String cancelOrder(){
