@@ -8,8 +8,8 @@
             var i;
             var m;
             $(function() {
-                var allOrders = ${myOrders};
-                var allTrips = ${myTrips};
+                var allOrders = ${orders};
+                var allTrips = ${trips};
 
                 for (m = 0; m < allOrders.length; m++) {
                     var items = allOrders[m].items;
